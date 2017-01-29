@@ -1,0 +1,43 @@
+.marketing {
+  margin-bottom: 100px;
+}
+.marketing div h4 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.marketing div i.fa {
+  text-align: center;
+  display: block;
+}
+
+.jumbotron-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.jumbotron-background img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+}
+
+.jumbotron h2, .jumbotron h4 {
+  position: relative;
+  color: white;
+  z-index: 2;
+}
+
+.footer {
+  bottom: 0px;
+  position: fixed;
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+  background-color: #e5e5e5;
+  text-align: center;
+  width: 100%;
+}
