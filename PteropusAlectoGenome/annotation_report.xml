@@ -1,0 +1,995 @@
+<?xml version="1.0"?>
+<AnnotationReports>
+  <BuildInfo>
+  <Taxid>9402</Taxid>
+  <ScientificName>Pteropus alecto</ScientificName>
+  <AnnotationReleaseId>101</AnnotationReleaseId>
+  <FreezeDate>Feb 8 2016</FreezeDate>
+  <IdLoadDate>Feb 10 2016</IdLoadDate>
+  <SoftwareMajorVersion>6</SoftwareMajorVersion>
+  <SoftwareMinorVersion>5</SoftwareMinorVersion>
+  <MaskingSoftware>windowmasker</MaskingSoftware>
+  <FtpSite>ftp://ftp.ncbi.nih.gov/genomes/Pteropus_alecto</FtpSite>
+</BuildInfo>
+  <AnnotationComparisonStats QueryAnnotationId="101" TargetAnnotationId="100">
+  <AssemblyPair QueryAssembly="ASM32557v1" TargetAssembly="ASM32557v1" QueryAccession="GCF_000325575.1" TargetAccession="GCF_000325575.1">
+    <CountsByFeatureType feature_type="gene">
+      <Counts category="Changed completeness">119</Counts>
+      <Counts category="Changed locus ID">5</Counts>
+      <Counts category="Changed locus type">414</Counts>
+      <Counts category="Changed substantially">3127</Counts>
+      <Counts category="Current-novel">1380</Counts>
+      <Counts category="Current-other">124</Counts>
+      <Counts category="Identical">4948</Counts>
+      <Counts category="Merged">146</Counts>
+      <Counts category="Other">79</Counts>
+      <Counts category="Previous-novel">689</Counts>
+      <Counts category="Previous-other">181</Counts>
+      <Counts category="Similar">11702</Counts>
+      <Counts category="Split">31</Counts>
+    </CountsByFeatureType>
+    <CountsByFeatureType feature_type="all coding transcript/protein">
+      <Counts category="Change in exception">12</Counts>
+      <Counts category="Changed feature type">75</Counts>
+      <Counts category="Changed locus ID">4</Counts>
+      <Counts category="Changed substantially">1452</Counts>
+      <Counts category="Current-novel">331</Counts>
+      <Counts category="Current-other">439</Counts>
+      <Counts category="Identical">4495</Counts>
+      <Counts category="Merged">96</Counts>
+      <Counts category="Other">1429</Counts>
+      <Counts category="Previous-novel">288</Counts>
+      <Counts category="Previous-other">355</Counts>
+      <Counts category="Previous-variant">1092</Counts>
+      <Counts category="Similar, change in CDS">3340</Counts>
+      <Counts category="Similar, change in UTR only">12375</Counts>
+      <Counts category="Split">22</Counts>
+      <Counts category="Variant">9119</Counts>
+    </CountsByFeatureType>
+    <CountsByFeatureType feature_type="known coding transcript/protein">
+      <Counts category="Change in exception">12</Counts>
+      <Counts category="Changed substantially">1</Counts>
+      <Counts category="Identical">1</Counts>
+      <Counts category="Similar, change in CDS">3</Counts>
+      <Counts category="Similar, change in UTR only">5</Counts>
+      <Counts category="Variant">4</Counts>
+    </CountsByFeatureType>
+    <CountsByFeatureType feature_type="model coding transcript/protein">
+      <Counts category="Changed feature type">75</Counts>
+      <Counts category="Changed locus ID">4</Counts>
+      <Counts category="Changed substantially">1451</Counts>
+      <Counts category="Current-novel">331</Counts>
+      <Counts category="Current-other">439</Counts>
+      <Counts category="Identical">4494</Counts>
+      <Counts category="Merged">96</Counts>
+      <Counts category="Other">1429</Counts>
+      <Counts category="Previous-novel">288</Counts>
+      <Counts category="Previous-other">355</Counts>
+      <Counts category="Previous-variant">1092</Counts>
+      <Counts category="Similar, change in CDS">3337</Counts>
+      <Counts category="Similar, change in UTR only">12370</Counts>
+      <Counts category="Split">22</Counts>
+      <Counts category="Variant">9115</Counts>
+    </CountsByFeatureType>
+    <CountsByFeatureType feature_type="all non-coding transcripts">
+      <Counts category="Changed feature type">226</Counts>
+      <Counts category="Changed locus ID">1</Counts>
+      <Counts category="Changed substantially">49</Counts>
+      <Counts category="Current-novel">1105</Counts>
+      <Counts category="Current-other">61</Counts>
+      <Counts category="Identical">11</Counts>
+      <Counts category="Merged">29</Counts>
+      <Counts category="Other">98</Counts>
+      <Counts category="Previous-novel">13</Counts>
+      <Counts category="Previous-other">34</Counts>
+      <Counts category="Previous-variant">42</Counts>
+      <Counts category="Similar">80</Counts>
+      <Counts category="Split">3</Counts>
+      <Counts category="Variant">367</Counts>
+    </CountsByFeatureType>
+    <CountsByFeatureType feature_type="known non-coding transcripts"/>
+    <CountsByFeatureType feature_type="model non-coding transcripts">
+      <Counts category="Changed feature type">226</Counts>
+      <Counts category="Changed locus ID">1</Counts>
+      <Counts category="Changed substantially">49</Counts>
+      <Counts category="Current-novel">1105</Counts>
+      <Counts category="Current-other">61</Counts>
+      <Counts category="Identical">11</Counts>
+      <Counts category="Merged">29</Counts>
+      <Counts category="Other">98</Counts>
+      <Counts category="Previous-novel">13</Counts>
+      <Counts category="Previous-other">34</Counts>
+      <Counts category="Previous-variant">42</Counts>
+      <Counts category="Similar">80</Counts>
+      <Counts category="Split">3</Counts>
+      <Counts category="Variant">367</Counts>
+    </CountsByFeatureType>
+  </AssemblyPair>
+</AnnotationComparisonStats>
+  <RnaseqAlignReport>
+  <AssemblyUnit accession="GCF_000325585.1">
+    <SampleStats sample="SAMN00709566" project="SRP008674" experiment="SRX099698">
+      <SampleName>Bat unstimulated thymus and bone marrow, and mitogen stimulated spleen/whole blood/lymph node (Pteropus alecto, SAMN00709566)</SampleName>
+      <NumReads>12505533</NumReads>
+      <AlignedReadsPct>72</AlignedReadsPct>
+      <SplicedReadPct>9</SplicedReadPct>
+      <IntronCount>116305</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN00736184" project="SRP008674" experiment="SRX099703">
+      <SampleName>pooled immune tissues: unstimulated thymus and bone marrow, and mitogen stimulated spleen, whole blood and lymph node (Pteropus alecto, SAMN00736184)</SampleName>
+      <NumReads>23904154</NumReads>
+      <AlignedReadsPct>40</AlignedReadsPct>
+      <SplicedReadPct>7</SplicedReadPct>
+      <IntronCount>114415</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN02929361" project="SRP044809" experiment="SRX661189">
+      <SampleName>uninfected kidney cells, control (Pteropus alecto, SAMN02929361)</SampleName>
+      <NumReads>128722916</NumReads>
+      <AlignedReadsPct>88</AlignedReadsPct>
+      <SplicedReadPct>28</SplicedReadPct>
+      <IntronCount>173520</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN02929362" project="SRP044809" experiment="SRX661190">
+      <SampleName>Hendra-virus-infected kidney cells, 8 hrs (Pteropus alecto, SAMN02929362)</SampleName>
+      <NumReads>139818642</NumReads>
+      <AlignedReadsPct>87</AlignedReadsPct>
+      <SplicedReadPct>28</SplicedReadPct>
+      <IntronCount>172900</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN02929363" project="SRP044809" experiment="SRX661191">
+      <SampleName>Hendra-virus-infected kidney cells, 24 hrs (Pteropus alecto, SAMN02929363)</SampleName>
+      <NumReads>124125864</NumReads>
+      <AlignedReadsPct>71</AlignedReadsPct>
+      <SplicedReadPct>22</SplicedReadPct>
+      <IntronCount>167624</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN04335741" project="SRP067371" experiment="SRX1481180">
+      <SampleName>Kidney, PaKiT03 (Pteropus alecto, SAMN04335741)</SampleName>
+      <NumReads>23281688</NumReads>
+      <AlignedReadsPct>88</AlignedReadsPct>
+      <SplicedReadPct>26</SplicedReadPct>
+      <IntronCount>145361</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN04335743" project="SRP067371" experiment="SRX1481182">
+      <SampleName>Kidney, PaKiT03 (Pteropus alecto, SAMN04335743)</SampleName>
+      <NumReads>22561240</NumReads>
+      <AlignedReadsPct>87</AlignedReadsPct>
+      <SplicedReadPct>26</SplicedReadPct>
+      <IntronCount>144068</IntronCount>
+    </SampleStats>
+    <SampleStats sample="SAMN04335748" project="SRP067371" experiment="SRX1481183">
+      <SampleName>Kidney, PaKiT03 (Pteropus alecto, SAMN04335748)</SampleName>
+      <NumReads>21492822</NumReads>
+      <AlignedReadsPct>87</AlignedReadsPct>
+      <SplicedReadPct>25</SplicedReadPct>
+      <IntronCount>143445</IntronCount>
+    </SampleStats>
+    <SampleStats sample="multiple">
+      <SampleName>Aggregate of all aligned samples</SampleName>
+      <NumReads>643786290</NumReads>
+      <AlignedReadsPct>62</AlignedReadsPct>
+      <SplicedReadPct>19</SplicedReadPct>
+      <IntronCount>198022</IntronCount>
+      <Consensus5thPercentileIntronStats>
+        <MinimalSupport>219</MinimalSupport>
+        <IntronCount>79636</IntronCount>
+        <IntronsLost>170</IntronsLost>
+        <PercentageLost>0.21</PercentageLost>
+      </Consensus5thPercentileIntronStats>
+    </SampleStats>
+    <RunStats run="SRR1524840" sample="SAMN02929362" project="SRP044809" experiment="SRX661190">
+      <NumReads>139818642</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>87</AlignedReadsPct>
+      <SplicedReadPct>28</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR1531161" sample="SAMN02929363" project="SRP044809" experiment="SRX661191">
+      <NumReads>124125864</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>71</AlignedReadsPct>
+      <SplicedReadPct>22</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR1531544" sample="SAMN02929361" project="SRP044809" experiment="SRX661189">
+      <NumReads>128722916</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>88</AlignedReadsPct>
+      <SplicedReadPct>28</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR2995111" sample="SAMN04335741" project="SRP067371" experiment="SRX1481180">
+      <NumReads>23281688</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>88</AlignedReadsPct>
+      <SplicedReadPct>26</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR2995136" sample="SAMN04335743" project="SRP067371" experiment="SRX1481182">
+      <NumReads>22561240</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>87</AlignedReadsPct>
+      <SplicedReadPct>26</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR2995138" sample="SAMN04335748" project="SRP067371" experiment="SRX1481183">
+      <NumReads>21492822</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>87</AlignedReadsPct>
+      <SplicedReadPct>25</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR350710" sample="SAMN00709566" project="SRP008674" experiment="SRX099698">
+      <NumReads>12505533</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>72</AlignedReadsPct>
+      <SplicedReadPct>9</SplicedReadPct>
+    </RunStats>
+    <RunStats run="SRR351237" sample="SAMN00736184" project="SRP008674" experiment="SRX099703">
+      <NumReads>23904154</NumReads>
+      <Stranded>No</Stranded>
+      <AlignedReadsPct>40</AlignedReadsPct>
+      <SplicedReadPct>7</SplicedReadPct>
+    </RunStats>
+  </AssemblyUnit>
+</RnaseqAlignReport>
+  <RefSeqAlignReport target_set_accession="GCF_000568445.1">
+  <FullAssembly>
+    <Name>ASM32557v1</Name>
+    <Accession>GCF_000325575.1</Accession>
+    <IsReference>Yes</IsReference>
+    <HasYChr>No</HasYChr>
+    <NumYChrSeqs>0</NumYChrSeqs>
+    <NumParSeqs>0</NumParSeqs>
+    <NumYChrParSeqs>0</NumYChrParSeqs>
+    <NumSeqsFromEntrez>26</NumSeqsFromEntrez>
+    <NumAlignableSeqs>26</NumAlignableSeqs>
+    <NumAlignments>27</NumAlignments>
+    <NumAlignedSeqs>26</NumAlignedSeqs>
+    <NumUnalignedSeqs>0</NumUnalignedSeqs>
+    <NumRank1AlignedSeqs>26</NumRank1AlignedSeqs>
+    <NumRank1AlignedCodingSeqs>26</NumRank1AlignedCodingSeqs>
+    <NumRank1AlignedNoncodingSeqs>0</NumRank1AlignedNoncodingSeqs>
+    <NumSplits>0</NumSplits>
+    <NumHighCovCdsSeqs>26</NumHighCovCdsSeqs>
+    <PercentUnaligned>0</PercentUnaligned>
+    <PercentSplit>0</PercentSplit>
+    <PercentLowCdsCov>0</PercentLowCdsCov>
+  </FullAssembly>
+</RefSeqAlignReport>
+  <AssembliesReport target_set_accession="GCF_000568445.1">
+  <FullAssembly>
+    <Name>ASM32557v1</Name>
+    <Accession>GCF_000325575.1</Accession>
+    <IsReference>Yes</IsReference>
+    <SubmitterOrganization>BGI</SubmitterOrganization>
+    <SubmitterDate>12-04-2013</SubmitterDate>
+    <AssemblyContents>
+      <Chromosomes>1</Chromosomes>
+      <UnplacedScaffolds/>
+    </AssemblyContents>
+    <Units>
+      <AssemblyUnit>
+        <Name>Primary Assembly</Name>
+        <Accession>GCF_000325585.1</Accession>
+        <IsPrimary>Yes</IsPrimary>
+        <Type>HaploidUnit</Type>
+      </AssemblyUnit>
+      <AssemblyUnit>
+        <Name>non-nuclear</Name>
+        <Accession>GCF_000565275.1</Accession>
+        <IsPrimary>No</IsPrimary>
+        <Type>HaploidUnit</Type>
+      </AssemblyUnit>
+    </Units>
+  </FullAssembly>
+</AssembliesReport>
+  <MaskingPercentagesReport target_set_accession="GCF_000568445.1">
+  <MaskingPercentages Name="ASM32557v1" Accession="GCF_000325575.1">
+    <RepeatMasker>32.58</RepeatMasker>
+    <WindowMasker>25.99</WindowMasker>
+  </MaskingPercentages>
+</MaskingPercentagesReport>
+  <FeatureCounts>
+  <OverallCounts>
+    <Counts feature_type="genes">
+      <Total>21930</Total>
+      <Subcount subtype="pseudo">2758</Subcount>
+      <Subcount subtype="has variants">6241</Subcount>
+      <Subcount subtype="partial">613</Subcount>
+      <Subcount subtype="non coding">948</Subcount>
+      <Subcount subtype="protein coding">18224</Subcount>
+    </Counts>
+    <Counts feature_type="mRNAs">
+      <Total>33093</Total>
+      <Subcount subtype="exon &lt;= 3nt">82</Subcount>
+      <Subcount subtype="partial">600</Subcount>
+      <Subcount subtype="correction">991</Subcount>
+      <Subcount subtype="model RefSeq">33067</Subcount>
+      <Subcount subtype="known RefSeq">26</Subcount>
+      <Subcount subtype="known RefSeq with correction">14</Subcount>
+      <Subcount subtype="fully supported">29314</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">1473</Subcount>
+      <Subcount subtype="has gaps">1</Subcount>
+      <Subcount subtype="model RefSeq with correction">977</Subcount>
+    </Counts>
+    <Counts feature_type="other RNAs">
+      <Total>2333</Total>
+      <Subcount subtype="exon &lt;= 3nt">1</Subcount>
+      <Subcount subtype="partial">0</Subcount>
+      <Subcount subtype="correction">0</Subcount>
+      <Subcount subtype="model RefSeq">1985</Subcount>
+      <Subcount subtype="known RefSeq">0</Subcount>
+      <Subcount subtype="known RefSeq with correction">0</Subcount>
+      <Subcount subtype="fully supported">1985</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">0</Subcount>
+      <Subcount subtype="has gaps">0</Subcount>
+    </Counts>
+    <Counts feature_type="CDSs">
+      <Total>33128</Total>
+      <Subcount subtype="exon &lt;= 3nt">588</Subcount>
+      <Subcount subtype="partial">613</Subcount>
+      <Subcount subtype="correction">1027</Subcount>
+      <Subcount subtype="model RefSeq">33067</Subcount>
+      <Subcount subtype="known RefSeq">26</Subcount>
+      <Subcount subtype="known RefSeq with correction">15</Subcount>
+      <Subcount subtype="fully supported">29314</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">1751</Subcount>
+      <Subcount subtype="model RefSeq with correction">977</Subcount>
+      <Subcount subtype="major correction">1267</Subcount>
+      <Subcount subtype="minor correction">12</Subcount>
+      <Subcount subtype="premature stop">1201</Subcount>
+      <Subcount subtype="has frameshifts">981</Subcount>
+    </Counts>
+  </OverallCounts>
+  <AssemblyCounts Accession="GCF_000325575.1" Type="full assembly">
+    <Counts feature_type="genes">
+      <Total>21930</Total>
+      <Subcount subtype="pseudo">2758</Subcount>
+      <Subcount subtype="has variants">6241</Subcount>
+      <Subcount subtype="partial">613</Subcount>
+      <Subcount subtype="non coding">948</Subcount>
+      <Subcount subtype="protein coding">18224</Subcount>
+      <Subcount subtype="multiply placed">0</Subcount>
+    </Counts>
+    <Counts feature_type="mRNAs">
+      <Total>33093</Total>
+      <Subcount subtype="exon &lt;= 3nt">82</Subcount>
+      <Subcount subtype="partial">600</Subcount>
+      <Subcount subtype="correction">991</Subcount>
+      <Subcount subtype="model RefSeq">33067</Subcount>
+      <Subcount subtype="known RefSeq">26</Subcount>
+      <Subcount subtype="known RefSeq with correction">14</Subcount>
+      <Subcount subtype="fully supported">29314</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">1473</Subcount>
+      <Subcount subtype="multiply placed">0</Subcount>
+      <Subcount subtype="has gaps">1</Subcount>
+      <Subcount subtype="model RefSeq with correction">977</Subcount>
+    </Counts>
+    <Counts feature_type="other RNAs">
+      <Total>2333</Total>
+      <Subcount subtype="exon &lt;= 3nt">1</Subcount>
+      <Subcount subtype="partial">0</Subcount>
+      <Subcount subtype="correction">0</Subcount>
+      <Subcount subtype="model RefSeq">1985</Subcount>
+      <Subcount subtype="known RefSeq">0</Subcount>
+      <Subcount subtype="known RefSeq with correction">0</Subcount>
+      <Subcount subtype="fully supported">1985</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">0</Subcount>
+      <Subcount subtype="multiply placed">0</Subcount>
+      <Subcount subtype="has gaps">0</Subcount>
+    </Counts>
+    <Counts feature_type="CDSs">
+      <Total>33128</Total>
+      <Subcount subtype="exon &lt;= 3nt">588</Subcount>
+      <Subcount subtype="partial">613</Subcount>
+      <Subcount subtype="correction">1027</Subcount>
+      <Subcount subtype="model RefSeq">33067</Subcount>
+      <Subcount subtype="known RefSeq">26</Subcount>
+      <Subcount subtype="known RefSeq with correction">15</Subcount>
+      <Subcount subtype="fully supported">29314</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">1751</Subcount>
+      <Subcount subtype="model RefSeq with correction">977</Subcount>
+      <Subcount subtype="major correction">1267</Subcount>
+      <Subcount subtype="minor correction">12</Subcount>
+      <Subcount subtype="premature stop">1201</Subcount>
+      <Subcount subtype="has frameshifts">981</Subcount>
+    </Counts>
+  </AssemblyCounts>
+  <AssemblyCounts Accession="GCF_000325585.1" Type="assembly unit">
+    <Counts feature_type="genes">
+      <Total>21930</Total>
+      <Subcount subtype="pseudo">2758</Subcount>
+      <Subcount subtype="has variants">6241</Subcount>
+      <Subcount subtype="partial">613</Subcount>
+      <Subcount subtype="non coding">948</Subcount>
+      <Subcount subtype="protein coding">18224</Subcount>
+    </Counts>
+    <Counts feature_type="mRNAs">
+      <Total>33093</Total>
+      <Subcount subtype="exon &lt;= 3nt">82</Subcount>
+      <Subcount subtype="partial">600</Subcount>
+      <Subcount subtype="correction">991</Subcount>
+      <Subcount subtype="model RefSeq">33067</Subcount>
+      <Subcount subtype="known RefSeq">26</Subcount>
+      <Subcount subtype="known RefSeq with correction">14</Subcount>
+      <Subcount subtype="fully supported">29314</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">1473</Subcount>
+      <Subcount subtype="has gaps">1</Subcount>
+      <Subcount subtype="model RefSeq with correction">977</Subcount>
+    </Counts>
+    <Counts feature_type="other RNAs">
+      <Total>2333</Total>
+      <Subcount subtype="exon &lt;= 3nt">1</Subcount>
+      <Subcount subtype="partial">0</Subcount>
+      <Subcount subtype="correction">0</Subcount>
+      <Subcount subtype="model RefSeq">1985</Subcount>
+      <Subcount subtype="known RefSeq">0</Subcount>
+      <Subcount subtype="known RefSeq with correction">0</Subcount>
+      <Subcount subtype="fully supported">1985</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">0</Subcount>
+      <Subcount subtype="has gaps">0</Subcount>
+    </Counts>
+    <Counts feature_type="CDSs">
+      <Total>33128</Total>
+      <Subcount subtype="exon &lt;= 3nt">588</Subcount>
+      <Subcount subtype="partial">613</Subcount>
+      <Subcount subtype="correction">1027</Subcount>
+      <Subcount subtype="model RefSeq">33067</Subcount>
+      <Subcount subtype="known RefSeq">26</Subcount>
+      <Subcount subtype="known RefSeq with correction">15</Subcount>
+      <Subcount subtype="fully supported">29314</Subcount>
+      <Subcount subtype="ab initio &gt; 5%">1751</Subcount>
+      <Subcount subtype="model RefSeq with correction">977</Subcount>
+      <Subcount subtype="major correction">1267</Subcount>
+      <Subcount subtype="minor correction">12</Subcount>
+      <Subcount subtype="premature stop">1201</Subcount>
+      <Subcount subtype="has frameshifts">981</Subcount>
+    </Counts>
+  </AssemblyCounts>
+</FeatureCounts>
+  <FeatureStats>
+  <OverallStats>
+    <TranscriptsPerGene>
+      <Min>1</Min>
+      <Max>32</Max>
+      <Mean>1.8378</Mean>
+      <Median>1</Median>
+    </TranscriptsPerGene>
+    <ExonsPerTranscript>
+      <Min>1</Min>
+      <Max>317</Max>
+      <Mean>11.581</Mean>
+      <Median>9</Median>
+    </ExonsPerTranscript>
+    <LengthStats category="All transcripts">
+      <Count>35426</Count>
+      <Min>71</Min>
+      <Max>102849</Max>
+      <Mean>2859.1</Mean>
+      <Median>2352</Median>
+    </LengthStats>
+    <LengthStats category="CDSs">
+      <Count>33093</Count>
+      <Min>96</Min>
+      <Max>102624</Max>
+      <Mean>1845.91</Mean>
+      <Median>1398</Median>
+    </LengthStats>
+    <LengthStats category="Genes">
+      <Count>19172</Count>
+      <Min>71</Min>
+      <Max>1817900</Max>
+      <Mean>42692.8</Mean>
+      <Median>15903</Median>
+    </LengthStats>
+    <LengthStats category="Single-exon transcripts">
+      <Count>1241</Count>
+      <Min>100</Min>
+      <Max>11234</Max>
+      <Mean>1225.33</Mean>
+      <Median>952</Median>
+    </LengthStats>
+    <LengthStats category="Single-exon transcripts in coding models">
+      <Count>1241</Count>
+      <Min>100</Min>
+      <Max>11234</Max>
+      <Mean>1225.33</Mean>
+      <Median>952</Median>
+    </LengthStats>
+    <LengthStats category="lncRNA">
+      <Count>1297</Count>
+      <Min>95</Min>
+      <Max>13352</Max>
+      <Mean>1637.57</Mean>
+      <Median>1184</Median>
+    </LengthStats>
+    <LengthStats category="mRNA">
+      <Count>33093</Count>
+      <Min>100</Min>
+      <Max>102849</Max>
+      <Mean>2933.01</Mean>
+      <Median>2418</Median>
+    </LengthStats>
+    <LengthStats category="misc_RNA">
+      <Count>688</Count>
+      <Min>122</Min>
+      <Max>13800</Max>
+      <Mean>3015.43</Mean>
+      <Median>2599</Median>
+    </LengthStats>
+    <LengthStats category="tRNA">
+      <Count>348</Count>
+      <Min>71</Min>
+      <Max>84</Max>
+      <Mean>73.6839</Mean>
+      <Median>73</Median>
+    </LengthStats>
+  </OverallStats>
+  <AssemblyStats Accession="GCF_000325575.1" Type="full assembly">
+    <TranscriptsPerGene>
+      <Min>1</Min>
+      <Max>32</Max>
+      <Mean>1.8378</Mean>
+      <Median>1</Median>
+    </TranscriptsPerGene>
+    <ExonsPerTranscript>
+      <Min>1</Min>
+      <Max>317</Max>
+      <Mean>11.581</Mean>
+      <Median>9</Median>
+    </ExonsPerTranscript>
+    <LengthStats category="All exons">
+      <Count>214466</Count>
+      <Min>1</Min>
+      <Max>17737</Max>
+      <Mean>259.076</Mean>
+      <Median>132</Median>
+    </LengthStats>
+    <LengthStats category="All introns">
+      <Count>194169</Count>
+      <Min>30</Min>
+      <Max>992217</Max>
+      <Mean>4658.52</Mean>
+      <Median>1243</Median>
+    </LengthStats>
+    <LengthStats category="All transcripts">
+      <Count>35426</Count>
+      <Min>71</Min>
+      <Max>102849</Max>
+      <Mean>2859.1</Mean>
+      <Median>2352</Median>
+    </LengthStats>
+    <LengthStats category="CDSs">
+      <Count>33093</Count>
+      <Min>96</Min>
+      <Max>102624</Max>
+      <Mean>1845.91</Mean>
+      <Median>1398</Median>
+    </LengthStats>
+    <LengthStats category="Exons in coding models">
+      <Count>209892</Count>
+      <Min>1</Min>
+      <Max>17737</Max>
+      <Mean>254.524</Mean>
+      <Median>132</Median>
+    </LengthStats>
+    <LengthStats category="Exons in non-coding models">
+      <Count>8537</Count>
+      <Min>2</Min>
+      <Max>9783</Max>
+      <Mean>335.387</Mean>
+      <Median>136</Median>
+    </LengthStats>
+    <LengthStats category="Genes">
+      <Count>19172</Count>
+      <Min>71</Min>
+      <Max>1817900</Max>
+      <Mean>42692.8</Mean>
+      <Median>15903</Median>
+    </LengthStats>
+    <LengthStats category="Introns in coding models">
+      <Count>190863</Count>
+      <Min>30</Min>
+      <Max>992217</Max>
+      <Mean>4638.35</Mean>
+      <Median>1242</Median>
+    </LengthStats>
+    <LengthStats category="Introns in non-coding models">
+      <Count>7146</Count>
+      <Min>30</Min>
+      <Max>280648</Max>
+      <Mean>4659.24</Mean>
+      <Median>1231</Median>
+    </LengthStats>
+    <LengthStats category="Single-exon transcripts">
+      <Count>1241</Count>
+      <Min>100</Min>
+      <Max>11234</Max>
+      <Mean>1225.33</Mean>
+      <Median>952</Median>
+    </LengthStats>
+    <LengthStats category="Single-exon transcripts in coding models">
+      <Count>1241</Count>
+      <Min>100</Min>
+      <Max>11234</Max>
+      <Mean>1225.33</Mean>
+      <Median>952</Median>
+    </LengthStats>
+    <LengthStats category="lncRNA">
+      <Count>1297</Count>
+      <Min>95</Min>
+      <Max>13352</Max>
+      <Mean>1637.57</Mean>
+      <Median>1184</Median>
+    </LengthStats>
+    <LengthStats category="mRNA">
+      <Count>33093</Count>
+      <Min>100</Min>
+      <Max>102849</Max>
+      <Mean>2933.01</Mean>
+      <Median>2418</Median>
+    </LengthStats>
+    <LengthStats category="misc_RNA">
+      <Count>688</Count>
+      <Min>122</Min>
+      <Max>13800</Max>
+      <Mean>3015.43</Mean>
+      <Median>2599</Median>
+    </LengthStats>
+    <LengthStats category="tRNA">
+      <Count>348</Count>
+      <Min>71</Min>
+      <Max>84</Max>
+      <Mean>73.6839</Mean>
+      <Median>73</Median>
+    </LengthStats>
+  </AssemblyStats>
+  <AssemblyStats Accession="GCF_000325585.1" Type="assembly unit">
+    <TranscriptsPerGene>
+      <Min>1</Min>
+      <Max>32</Max>
+      <Mean>1.8378</Mean>
+      <Median>1</Median>
+    </TranscriptsPerGene>
+    <ExonsPerTranscript>
+      <Min>1</Min>
+      <Max>317</Max>
+      <Mean>11.581</Mean>
+      <Median>9</Median>
+    </ExonsPerTranscript>
+    <LengthStats category="All exons">
+      <Count>214466</Count>
+      <Min>1</Min>
+      <Max>17737</Max>
+      <Mean>259.076</Mean>
+      <Median>132</Median>
+    </LengthStats>
+    <LengthStats category="All introns">
+      <Count>194169</Count>
+      <Min>30</Min>
+      <Max>992217</Max>
+      <Mean>4658.52</Mean>
+      <Median>1243</Median>
+    </LengthStats>
+    <LengthStats category="All transcripts">
+      <Count>35426</Count>
+      <Min>71</Min>
+      <Max>102849</Max>
+      <Mean>2859.1</Mean>
+      <Median>2352</Median>
+    </LengthStats>
+    <LengthStats category="CDSs">
+      <Count>33093</Count>
+      <Min>96</Min>
+      <Max>102624</Max>
+      <Mean>1845.91</Mean>
+      <Median>1398</Median>
+    </LengthStats>
+    <LengthStats category="Exons in coding models">
+      <Count>209892</Count>
+      <Min>1</Min>
+      <Max>17737</Max>
+      <Mean>254.524</Mean>
+      <Median>132</Median>
+    </LengthStats>
+    <LengthStats category="Exons in non-coding models">
+      <Count>8537</Count>
+      <Min>2</Min>
+      <Max>9783</Max>
+      <Mean>335.387</Mean>
+      <Median>136</Median>
+    </LengthStats>
+    <LengthStats category="Genes">
+      <Count>19172</Count>
+      <Min>71</Min>
+      <Max>1817900</Max>
+      <Mean>42692.8</Mean>
+      <Median>15903</Median>
+    </LengthStats>
+    <LengthStats category="Introns in coding models">
+      <Count>190863</Count>
+      <Min>30</Min>
+      <Max>992217</Max>
+      <Mean>4638.35</Mean>
+      <Median>1242</Median>
+    </LengthStats>
+    <LengthStats category="Introns in non-coding models">
+      <Count>7146</Count>
+      <Min>30</Min>
+      <Max>280648</Max>
+      <Mean>4659.24</Mean>
+      <Median>1231</Median>
+    </LengthStats>
+    <LengthStats category="Single-exon transcripts">
+      <Count>1241</Count>
+      <Min>100</Min>
+      <Max>11234</Max>
+      <Mean>1225.33</Mean>
+      <Median>952</Median>
+    </LengthStats>
+    <LengthStats category="Single-exon transcripts in coding models">
+      <Count>1241</Count>
+      <Min>100</Min>
+      <Max>11234</Max>
+      <Mean>1225.33</Mean>
+      <Median>952</Median>
+    </LengthStats>
+    <LengthStats category="lncRNA">
+      <Count>1297</Count>
+      <Min>95</Min>
+      <Max>13352</Max>
+      <Mean>1637.57</Mean>
+      <Median>1184</Median>
+    </LengthStats>
+    <LengthStats category="mRNA">
+      <Count>33093</Count>
+      <Min>100</Min>
+      <Max>102849</Max>
+      <Mean>2933.01</Mean>
+      <Median>2418</Median>
+    </LengthStats>
+    <LengthStats category="misc_RNA">
+      <Count>688</Count>
+      <Min>122</Min>
+      <Max>13800</Max>
+      <Mean>3015.43</Mean>
+      <Median>2599</Median>
+    </LengthStats>
+    <LengthStats category="tRNA">
+      <Count>348</Count>
+      <Min>71</Min>
+      <Max>84</Max>
+      <Mean>73.6839</Mean>
+      <Median>73</Median>
+    </LengthStats>
+  </AssemblyStats>
+</FeatureStats>
+  <ProteinAlignStats>
+  <AssemblyStats accession="GCF_000325585.1">
+    <CategoryStats Species="Myotis brandtii" Taxid="109478" Category="high-quality model RefSeq (XP_)">
+      <TotalSequences>7160</TotalSequences>
+      <AlignedByProSplign>7102</AlignedByProSplign>
+      <PassedToGnomon>7102</PassedToGnomon>
+      <MeanPctIdentity>78.48</MeanPctIdentity>
+      <MeanPctCoverage>85.95</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="GenBank">
+      <TotalSequences>1548</TotalSequences>
+      <AlignedByProSplign>1440</AlignedByProSplign>
+      <PassedToGnomon>1440</PassedToGnomon>
+      <MeanPctIdentity>79.04</MeanPctIdentity>
+      <MeanPctCoverage>89.37</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="known RefSeq (NP_)">
+      <TotalSequences>25</TotalSequences>
+      <AlignedByProSplign>24</AlignedByProSplign>
+      <PassedToGnomon>24</PassedToGnomon>
+      <MeanPctIdentity>76.66</MeanPctIdentity>
+      <MeanPctCoverage>88.58</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Same-species" Taxid="9402" Category="GenBank">
+      <TotalSequences>24</TotalSequences>
+      <AlignedByProSplign>24</AlignedByProSplign>
+      <PassedToGnomon>24</PassedToGnomon>
+      <MeanPctIdentity>91.63</MeanPctIdentity>
+      <MeanPctCoverage>91.42</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Same-species" Taxid="9402" Category="known RefSeq (NP_)">
+      <TotalSequences>26</TotalSequences>
+      <AlignedByProSplign>25</AlignedByProSplign>
+      <PassedToGnomon>25</PassedToGnomon>
+      <MeanPctIdentity>87.6</MeanPctIdentity>
+      <MeanPctCoverage>90.36</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Homo sapiens" Taxid="9606" Category="known RefSeq (NP_)">
+      <TotalSequences>40525</TotalSequences>
+      <AlignedByProSplign>39549</AlignedByProSplign>
+      <PassedToGnomon>39549</PassedToGnomon>
+      <MeanPctIdentity>76.01</MeanPctIdentity>
+      <MeanPctCoverage>82.28</MeanPctCoverage>
+    </CategoryStats>
+  </AssemblyStats>
+  <AssemblyStats accession="GCF_000565275.1"/>
+</ProteinAlignStats>
+  <TranscriptAlignStats>
+  <AssemblyStats accession="GCF_000325585.1">
+    <CategoryStats Species="Same-species" Taxid="9402" Category="known RefSeq (NM_/NR_)">
+      <TotalSequences>26</TotalSequences>
+      <AlignedBySplign>26</AlignedBySplign>
+      <PassedToGnomon>25</PassedToGnomon>
+      <MeanPctIdentity>99.4</MeanPctIdentity>
+      <MeanPctCoverage>99.92</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Same-species" Taxid="9402" Category="Genbank">
+      <TotalSequences>48</TotalSequences>
+      <AlignedBySplign>40</AlignedBySplign>
+      <PassedToGnomon>28</PassedToGnomon>
+      <MeanPctIdentity>99.14</MeanPctIdentity>
+      <MeanPctCoverage>91.6</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="known RefSeq (NM_/NR_)">
+      <TotalSequences>527</TotalSequences>
+      <AlignedBySplign>228</AlignedBySplign>
+      <PassedToGnomon>196</PassedToGnomon>
+      <MeanPctIdentity>94.33</MeanPctIdentity>
+      <MeanPctCoverage>97.61</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="Genbank">
+      <TotalSequences>1653</TotalSequences>
+      <AlignedBySplign>1541</AlignedBySplign>
+      <PassedToGnomon>1007</PassedToGnomon>
+      <MeanPctIdentity>92.76</MeanPctIdentity>
+      <MeanPctCoverage>98.17</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="EST">
+      <TotalSequences>144</TotalSequences>
+      <AlignedBySplign>32</AlignedBySplign>
+      <PassedToGnomon>16</PassedToGnomon>
+      <MeanPctIdentity>90.75</MeanPctIdentity>
+      <MeanPctCoverage>97.31</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Homo sapiens" Taxid="9606" Category="known RefSeq (NM_/NR_)">
+      <TotalSequences>52440</TotalSequences>
+      <AlignedBySplign>42528</AlignedBySplign>
+      <PassedToGnomon>9606</PassedToGnomon>
+      <MeanPctIdentity>89.26</MeanPctIdentity>
+      <MeanPctCoverage>82.2</MeanPctCoverage>
+    </CategoryStats>
+    <CategoryStats Species="Homo sapiens" Taxid="9606" Category="Genbank">
+      <TotalSequences>278672</TotalSequences>
+      <AlignedBySplign>149407</AlignedBySplign>
+      <PassedToGnomon>47796</PassedToGnomon>
+      <MeanPctIdentity>90.01</MeanPctIdentity>
+      <MeanPctCoverage>89.7</MeanPctCoverage>
+    </CategoryStats>
+  </AssemblyStats>
+  <AssemblyStats accession="GCF_000565275.1">
+    <CategoryStats Species="Same-species" Taxid="9402" Category="known RefSeq (NM_/NR_)">
+      <TotalSequences>26</TotalSequences>
+    </CategoryStats>
+    <CategoryStats Species="Same-species" Taxid="9402" Category="Genbank">
+      <TotalSequences>48</TotalSequences>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="known RefSeq (NM_/NR_)">
+      <TotalSequences>527</TotalSequences>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="Genbank">
+      <TotalSequences>1653</TotalSequences>
+    </CategoryStats>
+    <CategoryStats Species="Chiroptera" Taxid="9397" Category="EST">
+      <TotalSequences>144</TotalSequences>
+    </CategoryStats>
+    <CategoryStats Species="Homo sapiens" Taxid="9606" Category="known RefSeq (NM_/NR_)">
+      <TotalSequences>52440</TotalSequences>
+    </CategoryStats>
+    <CategoryStats Species="Homo sapiens" Taxid="9606" Category="Genbank">
+      <TotalSequences>278672</TotalSequences>
+    </CategoryStats>
+  </AssemblyStats>
+</TranscriptAlignStats>
+  <ProteinCoverageStats>
+  <OrganismStats organism="Pteropus alecto" target_source="UniProtKB/Swiss-Prot curated proteins">
+  <Stats AssemblyUnit="GCF_000325585.1" FullAssembly="GCF_000325575.1" FullAssemblyName="ASM32557v1" AnnotRelId="101">
+    <Stat stat="Gene Count">18189</Stat>
+    <Stat stat="Total Align Lengths">10359764</Stat>
+    <Stat stat="Total Top5000 Align Lengths">5924368</Stat>
+    <Stat stat="Mean Query Coverage">96</Stat>
+    <Stat stat="Median Query Coverage">99</Stat>
+    <Stat stat="Mean Subject Coverage">94</Stat>
+    <Stat stat="Median Subject Coverage">99</Stat>
+    <CoverageCounts row="query" from="50">18023</CoverageCounts>
+    <CoverageCounts row="subject" from="50">17733</CoverageCounts>
+    <CoverageCounts row="query" from="60">17874</CoverageCounts>
+    <CoverageCounts row="subject" from="60">17517</CoverageCounts>
+    <CoverageCounts row="query" from="70">17654</CoverageCounts>
+    <CoverageCounts row="subject" from="70">17149</CoverageCounts>
+    <CoverageCounts row="query" from="80">17228</CoverageCounts>
+    <CoverageCounts row="subject" from="80">16583</CoverageCounts>
+    <CoverageCounts row="query" from="90">16408</CoverageCounts>
+    <CoverageCounts row="subject" from="90">15360</CoverageCounts>
+    <CoverageCounts row="query" from="95">15337</CoverageCounts>
+    <CoverageCounts row="subject" from="95">14076</CoverageCounts>
+    <CoverageCounts row="query" from="98">13776</CoverageCounts>
+    <CoverageCounts row="subject" from="98">12342</CoverageCounts>
+    <CoverageCounts row="query" from="100">8178</CoverageCounts>
+    <CoverageCounts row="subject" from="100">6857</CoverageCounts>
+  </Stats>
+</OrganismStats>
+  <OrganismStats organism="Myotis davidii" target_source="UniProtKB/Swiss-Prot curated proteins">
+    <Stats AssemblyUnit="GCF_000327355.1" FullAssembly="GCF_000327345.1" FullAssemblyName="ASM32734v1" AnnotRelId="101">
+      <Stat stat="Gene Count">18851</Stat>
+      <Stat stat="Total Align Lengths">10067249</Stat>
+      <Stat stat="Total Top5000 Align Lengths">5749007</Stat>
+      <Stat stat="Mean Query Coverage">94</Stat>
+      <Stat stat="Median Query Coverage">99</Stat>
+      <Stat stat="Mean Subject Coverage">86</Stat>
+      <Stat stat="Median Subject Coverage">96</Stat>
+      <CoverageCounts row="query" from="50">18620</CoverageCounts>
+      <CoverageCounts row="query" from="60">18419</CoverageCounts>
+      <CoverageCounts row="query" from="70">18083</CoverageCounts>
+      <CoverageCounts row="query" from="80">17371</CoverageCounts>
+      <CoverageCounts row="query" from="90">15741</CoverageCounts>
+      <CoverageCounts row="query" from="95">13907</CoverageCounts>
+      <CoverageCounts row="query" from="98">11573</CoverageCounts>
+      <CoverageCounts row="query" from="100">6338</CoverageCounts>
+      <CoverageCounts row="subject" from="50">17382</CoverageCounts>
+      <CoverageCounts row="subject" from="60">16717</CoverageCounts>
+      <CoverageCounts row="subject" from="70">15775</CoverageCounts>
+      <CoverageCounts row="subject" from="80">14451</CoverageCounts>
+      <CoverageCounts row="subject" from="90">12227</CoverageCounts>
+      <CoverageCounts row="subject" from="95">10352</CoverageCounts>
+      <CoverageCounts row="subject" from="98">8314</CoverageCounts>
+      <CoverageCounts row="subject" from="100">4361</CoverageCounts>
+    </Stats>
+  </OrganismStats>
+  <OrganismStats organism="Myotis brandtii" target_source="UniProtKB/Swiss-Prot curated proteins">
+    <Stats AssemblyUnit="GCF_000412665.1" FullAssembly="GCF_000412655.1" FullAssemblyName="ASM41265v1" AnnotRelId="101">
+      <Stat stat="Gene Count">19988</Stat>
+      <Stat stat="Total Align Lengths">10450629</Stat>
+      <Stat stat="Total Top5000 Align Lengths">5826192</Stat>
+      <Stat stat="Mean Query Coverage">94</Stat>
+      <Stat stat="Median Query Coverage">99</Stat>
+      <Stat stat="Mean Subject Coverage">87</Stat>
+      <Stat stat="Median Subject Coverage">97</Stat>
+      <CoverageCounts row="query" from="50">19572</CoverageCounts>
+      <CoverageCounts row="query" from="60">19340</CoverageCounts>
+      <CoverageCounts row="query" from="70">18946</CoverageCounts>
+      <CoverageCounts row="query" from="80">18156</CoverageCounts>
+      <CoverageCounts row="query" from="90">16558</CoverageCounts>
+      <CoverageCounts row="query" from="95">14699</CoverageCounts>
+      <CoverageCounts row="query" from="98">12328</CoverageCounts>
+      <CoverageCounts row="query" from="100">6819</CoverageCounts>
+      <CoverageCounts row="subject" from="50">18302</CoverageCounts>
+      <CoverageCounts row="subject" from="60">17680</CoverageCounts>
+      <CoverageCounts row="subject" from="70">16761</CoverageCounts>
+      <CoverageCounts row="subject" from="80">15488</CoverageCounts>
+      <CoverageCounts row="subject" from="90">13276</CoverageCounts>
+      <CoverageCounts row="subject" from="95">11439</CoverageCounts>
+      <CoverageCounts row="subject" from="98">9403</CoverageCounts>
+      <CoverageCounts row="subject" from="100">5002</CoverageCounts>
+    </Stats>
+  </OrganismStats>
+  <OrganismStats organism="Pteropus vampyrus" target_source="UniProtKB/Swiss-Prot curated proteins">
+    <Stats AssemblyUnit="GCF_000151855.1" FullAssembly="GCF_000151845.1" FullAssemblyName="Pvam_2.0" AnnotRelId="100">
+      <Stat stat="Gene Count">19260</Stat>
+      <Stat stat="Total Align Lengths">10507475</Stat>
+      <Stat stat="Total Top5000 Align Lengths">5894135</Stat>
+      <Stat stat="Mean Query Coverage">95</Stat>
+      <Stat stat="Median Query Coverage">99</Stat>
+      <Stat stat="Mean Subject Coverage">89</Stat>
+      <Stat stat="Median Subject Coverage">99</Stat>
+      <CoverageCounts row="query" from="50">18933</CoverageCounts>
+      <CoverageCounts row="query" from="60">18718</CoverageCounts>
+      <CoverageCounts row="query" from="70">18369</CoverageCounts>
+      <CoverageCounts row="query" from="80">17813</CoverageCounts>
+      <CoverageCounts row="query" from="90">16651</CoverageCounts>
+      <CoverageCounts row="query" from="95">15277</CoverageCounts>
+      <CoverageCounts row="query" from="98">13507</CoverageCounts>
+      <CoverageCounts row="query" from="100">7943</CoverageCounts>
+      <CoverageCounts row="subject" from="50">17924</CoverageCounts>
+      <CoverageCounts row="subject" from="60">17466</CoverageCounts>
+      <CoverageCounts row="subject" from="70">16841</CoverageCounts>
+      <CoverageCounts row="subject" from="80">15979</CoverageCounts>
+      <CoverageCounts row="subject" from="90">14546</CoverageCounts>
+      <CoverageCounts row="subject" from="95">13084</CoverageCounts>
+      <CoverageCounts row="subject" from="98">11378</CoverageCounts>
+      <CoverageCounts row="subject" from="100">6514</CoverageCounts>
+    </Stats>
+  </OrganismStats>
+</ProteinCoverageStats>
+</AnnotationReports>
