@@ -5,6 +5,42 @@ import glob
 import urllib2
 import subprocess
 
+def blast_sequence(sequence):
+    # Write sequence into file to blast
+    with open("sequence.fasta", "w") as fasta_sequence:
+        fasta_sequence.write(">%s" % sequence)
+
+    # Blast sequence
+    command = "blastn -entrez_query 'Pteropus alecto[Organism] OR Hendra virus[Organism]' -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
+    subprocess.call(command, shell=True)
+
+    # Get GI, accession number and FPKM value
+    lines = open("sequence.out").readlines()
+    if lines:
+        lines = lines[0].replace("\t", "|").split("|")
+        gene_gi = lines[2]
+        accession_number = lines[4]
+        label, fpkm_value = sequence.split("\n")[0].split()[:]
+        transcript_id = label.split("-")[1]
+
+        # Find gene name
+        url = "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=%s&db=nuccore&report=genbank&retmode=text" % gene_gi
+        data = urllib2.urlopen(url).readlines()
+        i = 0
+        for j, t in enumerate(data):
+            t = t.strip()
+            if t.startswith("gene"):
+                i = j + 1
+                break
+        gene_name = data[i].strip().replace("/gene=", "").replace('"', "")
+
+        # Remove temporary files
+        subprocess.call("rm -f sequence.fasta sequence.out", shell=True)
+
+        return [accession_number, gene_name, transcript_id, fpkm_value]
+
+    return ["", "", "", ""]
+
 
 # Start program
 if __name__ == '__main__':
@@ -60,45 +96,25 @@ if __name__ == '__main__':
         report = fasta.replace("_fixed.fasta", ".csv")
         with open(report, 'wb') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["Accession Number", "Gene Symbol", "FPKM Value"])
+            writer.writerow(["Accession Number", "Gene Symbol", "Transcript Id", "FPKM Value"])
 
             # Iterate via sequences
-            for sequence in open(fasta).read().split('>'):
-                # Skip emtpy lines
-                if not sequence:
-                    continue
+            sequence = ""
 
-                # Write sequence into file to blast
-                with open("sequence.fasta", "w") as fasta_sequence:
-                    fasta_sequence.write(">%s" % sequence)
+            for line in open(fasta):
+                if line.startswith('>') and sequence.startswith('>'):
+                        # Run blast
+                        row = blast_sequence(sequence)
+                        # Save row
+                        writer.writerow(row)
+                        # Start new sequence
+                        sequence = line
+                else:
+                    sequence += "%s\n" % line
 
-                # Blast sequence
-                command = "blastn -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
-                subprocess.call(command, shell=True)
-
-                # Get GI, accession number and FPKM value
-                line = open("sequence.out").readlines()
-                if line:
-
-                    line = line[0].replace("\t", "|").split("|")
-                    gene_gi = line[2]
-                    accession_number = line[4]
-                    fpkm_value = sequence.split("\n")[0].split()[-1]
-
-                    # Find gene name
-                    url = "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=%s&db=nuccore&report=genbank&retmode=text" % gene_gi
-                    data = urllib2.urlopen(url).readlines()
-                    i = 0
-                    for j, t in enumerate(data):
-                        t = t.strip()
-                        if t.startswith("gene"):
-                            i = j + 1
-                            break
-                    gene_name = data[i].strip().replace("/gene=", "").replace('"', "")
-
-                    # Save data
-                    writer.writerow([accession_number, gene_name, fpkm_value])
-
-                    # Remove temporary files
-                    subprocess.call("rm -f sequence.fasta sequence.out", shell=True)
-
+            # If the last sequence is not empty
+            if sequence and sequence.startswith('>'):
+                # Run blast
+                row = blast_sequence(sequence)
+                # Save row
+                writer.writerow(row)
