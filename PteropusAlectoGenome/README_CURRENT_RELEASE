@@ -1,0 +1,20 @@
+ORGANISM NAME:	Pteropus alecto
+ORGANISM COMMON NAME:	black flying fox
+TAXID:	9402
+ANNOTATION RELEASE NAME:	NCBI Pteropus alecto Annotation Release 101
+ANNOTATION EVIDENCE FREEZE DATE:	8 February 2016
+ANNOTATION RELEASE DATE:	10 February 2016
+ANNOTATION REPORT:	http://www.ncbi.nlm.nih.gov/genome/annotation_euk/Pteropus_alecto/101/
+
+ANNOTATED ASSEMBLIES:
+* REFERENCE:
+ASSEMBLY NAME:	ASM32557v1
+ASSEMBLY ACCESSION:	GCF_000325575.1
+ASSEMBLY SUBMITTER:	BGI
+ASSEMBLY DATE:	4 December 2013
+ASSEMBLY TYPE:	Haploid
+NUMBER OF ASSEMBLY-UNITS:	2
+##Below is a 2 column list with assembly-unit id and name.
+##The Primary Assembly unit is listed first.
+GCF_000325585.1	Primary Assembly
+GCF_000565275.1	non-nuclear

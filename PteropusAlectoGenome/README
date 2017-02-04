@@ -1,0 +1,759 @@
+######################################################################
+ 
+README
+ 
+######################################################################
+ 
+=====================================
+Directory Contents
+=====================================
+ 
+This directory includes sequence records and map data generated at
+NCBI or used in NCBI resources.
+ 
+Sequence data include chromosomes, contigs, RNAs, and proteins
+generated through the NCBI Reference Sequence and NCBI Genome
+Annotation projects.
+See more details in:
+  http://www.ncbi.nlm.nih.gov/genome/annotation_euk
+and
+  http://www.ncbi.nlm.nih.gov/books/NBK169439/
+ 
+Map data presented in the Map Viewer resource are also provided here.
+The NCBI Map Viewer provides graphical views of the genome data. See:
+  http://www.ncbi.nlm.nih.gov/mapview/
+ 
+The sections below include:
+ 
+    README_CURRENT_RELEASE file
+    annotation_report.xml
+    comparisons
+      {assembly_accession}_{assembly name}_compare_prev.txt.gz
+      {assembly_accession}_{assembly name}_compare_prev.gbp.gz
+    Scaffold assembly & information files
+      allcontig.agp.gz
+      masking_coordinates.gz
+      seq_contig.md.gz
+      windowmasker_nmer.oascii.gz
+      scaffold_names
+    CHR## - Chromosome directories
+    Assembled_chromosomes directory & chr_NC_gi file
+    RNA, protein and other directories
+    GFF
+    Gnomon
+    mapview directory
+    ARCHIVE directory
+    File extensions
+ 
+Sequence data are in the Chromosome, RNA, and protein directories.
+ 
+ 
+=====================================
+README_CURRENT_RELEASE file
+=====================================
+ 
+This file provides information specific to the current annotation
+release, including data freeze dates, release date and release 
+number, and the annotated assemblies. This file also indicates if 
+updates are made to correct an error or to provide updated 
+information.
+ 
+ 
+==========================
+annotation_report.xml file
+==========================
+
+This file is the XML version of the HTML report for the organism:
+http://www.ncbi.nlm.nih.gov/genome/annotation_euk/{org_name}/{annotation_release_id}/
+(i.e. http://www.ncbi.nlm.nih.gov/genome/annotation_euk/Homo_sapiens/106/)
+
+It contains information on the annotation release, including:
+* Important dates associated with the annotation
+* Assemblies
+* Gene and feature statistics
+* Masking results
+* Transcript and protein alignments used for the annotation
+* Assembly-assembly alignments used to track genes from the previous 
+assembly to the current, or from the reference to an alternate assembly
+ 
+
+===========
+comparisons
+===========
+This directory is only provided for re-annotations.
+
+{assembly_accession}_{assembly name}_compare_prev.txt.gz
+--------------------------------------------------------
+Matching genes and transcripts in the current and previous annotation 
+releases binned by type of difference (column 1 for genes and column 14 
+for transcripts), in tabular format
+
+{assembly_accession}_{assembly name}_compare_prev.gbp.gz
+--------------------------------------------------------
+GenomeWorkBench project file: to search and visually inspect 
+differences between the current and previous releases.
+See how to download and use the 64-bit version of Genome Workbench:
+http://www.ncbi.nlm.nih.gov/tools/gbench/
+
+Unzip {assembly_accession}_{assembly name}_compare_previous.gbp.gz
+Load {assembly_accession}_{assembly name}_compare_previous.gbp to 
+GenomeWorkBench 
+Open the comparison report 
+{assembly_accession}_{assembly name}_.compare_prev.table.asn 
+as a Generic Table View
+Use search and filter on terms in the table to find a 
+specific gene, sequence or category
+Right click or double-click on a row and open the 
+'Graphical Sequence View' for a graphical view of the gene on 
+the current or the previous scaffold
+Make sure 'Project features for aligned sequences' is enabled 
+in the Alignments track if the comparison is across two 
+different versions of an assembly.
+
+Description of the content
+--------------------------
+The annotation produced for this release was compared to the annotation 
+in the previous release for each assembly annotated in both releases. 
+Scores for current and previous gene and transcript features were 
+calculated based on overlap in exon sequence and matches in exon 
+boundaries. Pairs of current and previous features were categorized 
+based on these scores, whether they are reciprocal best matches, and 
+changes in attributes (gene biotype, completeness, etc.). If the 
+assembly was updated between the two releases, alignments between the 
+current and the previous assembly were used to match the current and 
+previous gene and transcript features in mapped regions.
+
+Here are the possible categories in which genes and transcripts are 
+assigned, roughly in order of precedence:
+
+* Changed locus ID: new feature identifier
+* Merged: the previous feature matches only part of the current feature
+* Split: the current feature matches only part of the previous feature
+* Changed locus type: difference in the gene biotype
+(coding vs. non-coding, pseudogene vs. coding, etc...) 
+- applies to genes only
+* Current-novel: Current feature has no matching previous feature
+* Previous-novel: previous feature has no matching current feature  
+* Current-other: current feature can't be matched unambiguously to 
+previous feature
+* Previous-other: previous feature can't be matched unambiguously to 
+current feature
+* Current-unmapped: current feature location can't be mapped to the 
+previous assembly
+* Previous-unmapped: previous feature location can't be mapped to the 
+current assembly
+* Moved: feature ID found on both current and previous but not placed 
+on regions aligned to each other by assembly-assembly alignment
+* Identical: identical exon boundaries in current and previous
+* Variant: alternative variant in current not in previous - applies 
+to transcripts only
+* Change in exception: Exceptions are added to RNA features when the 
+RefSeq transcript sequence doesn't match the conceptual sequence from 
+the genome due to the presence of mismatches, indels, or additional 
+sequence, or in some other cases of unusual biology like ribosomal 
+slippage. This category reports when the current or previous RefSeq 
+transcript sequence was annotated with an exception and the matched 
+transcript does not. - applies to transcripts only
+* Similar: highly similar features, with support scores of 0.66 or more
+(on a scale of 0 to 1) on both sides of the comparison. The support 
+score is derived from a combination of matching exon boundaries and 
+sequence overlap. - applies to genes and non-coding transcripts only
+* Similar, change in CDS: support scores of 0.66 or more on both sides 
+AND the change affects the CDS - applies to coding transcripts only
+* Similar, change in UTR only: support scores of 0.66 or more both 
+sides AND the change affects UTRs only (not the CDS) - applies to 
+coding transcripts only
+* Changed feature type: difference in the feature type - applies to 
+coding transcripts only
+* Changed completeness: feature is partial in current and complete in 
+the previous or vice versa - applies to genes only
+* Changed substantially: low similarity feature with support scores 
+below 0.66 on one or both sides. 
+* NA: No transcript feature associated with the current or previous gene 
+(pseudogene)
+* Previous-variant: alternative variant in previous not in current 
+- applies to transcripts only
+* Other: complex cases not fitting in categories above
+
+Notes:
+------
+1. A gene may be categorized as not 'Identical' if the boundaries of a 
+gene are unchanged in the two annotation releases, but the children 
+exons have changed. This situation is frequent when a different set of 
+alternative variants are predicted for a gene. 
+2. Since a transcript feature on one side of the comparison may 
+overlap multiple transcripts in the other side, a transcript may appear 
+on multiple lines in the report.
+
+
+====================================================
+Scaffold and chromosome assembly & information files
+====================================================
+ 
+allcontig.agp.gz file:
+----------------------
+This file provides detailed information about the scaffold assembly.
+ 
+columns:
+ 
+ 1:   scaffold accession.version
+  
+ 2:   beginning base on scaffold
+  
+ 3:   ending base on scaffold
+  
+ 4:   scaffold fragment number
+  
+ 5:   fragment type (D=Draft, F=Finished, W=Whole genome shotgun
+      (WGS) N=NN gap)
+  
+ 6:   if sequence, value = accession.version of the component
+      sequence from which bases are derived
+      if N-gap, value = number of N's
+  
+ 7:   if sequence, value = beginning base of component sequence
+      if N-gap, value = keyword "fragment"
+      {fragment keyword indicates gap between fragments within a
+      clone or between fragments of overlapping clones}
+  
+ 8:   if sequence, value = ending base of component sequence
+      if N-gap, value=yes - some sort of order and orientation by
+      mRNA, EST or BAC end pair
+      if N-gap,value=no - no order and orientation between
+      flanking fragments
+  
+ 9:   + if accession is positive orientation to scaffold,
+      - otherwise
+      (column 9 for sequence only)
+ 
+ 
+windowmasker_nmer.oascii.gz
+---------------------------
+The windowmasker_nmer.oascii.gz file gives Nmer counts generated by
+running the first phase of WindowMasker (Morgulis A, Gertz EM,
+Schaffer AA, Agarwala R. 2006. Bioinformatics 22:134-41) on the
+genomic sequences of the reference assembly. These counts can be used
+as input for the second phase of WindowMasker to mask any nucleotide
+sequence for the genome. N and other default parameter settings are
+computed within WindowMasker depending on the input genome sequence.
+The windowmasker_nmer.oascii.gz file is in WindowMasker optimized
+ASCII format and is not human readable. Alternate human readable
+formats are supported and can be generated by running WindowMasker.
+WindowMasker is available at:
+ftp://ftp.ncbi.nlm.nih.gov/pub/agarwala/windowmasker/
+ 
+ 
+masking_coordinates.gz:
+-----------------------
+The masking_coordinates.gz file lists locations for segments of
+repetitive sequence in the genomic scaffolds (determined using
+RepeatMasker http://www.repeatmasker.org/). These coordinates can be
+used to mask the repetitive sequences in the scaffolds.
+ 
+columns:
+ 
+ 1.   scaffold accession.version
+ 
+ 2.   beginning base on scaffold
+ 
+ 3.   ending base on scaffold
+ 
+ 4.   class of repetitive sequence, or list of classes when
+      overlapping repeats have been merged into a single
+      span.
+ 
+ 
+seq_contig.md.gz file:
+----------------------
+The seq_contig.md file provides information on the order and
+orientation of the scaffolds along the chromosome.
+ 
+columns:
+ 
+1. tax_id:       Taxonomy ID for the annotated organism
+ 
+2. chromosome:   * or *|scaffold where * is the chromosome and
+                 *|scaffold indicates the scaffold is associated
+                 with the chromosome
+ 
+3. from:         chromosome coordinate, reported in 1 base coordinates
+ 
+4. to:           chromosome coordinate, reported in 1 base coordinates
+ 
+5. orientation:  +, -, 0 - where 0 indicates uncertainty in
+                 orientation
+ 
+6. accession:    accession.version format
+ 
+7. id:           internal ID
+ 
+8. type:         designates the type of feature (e.g. scaffold)
+ 
+9. assembly      this value is used to associate scaffolds with a
+                 particular assembly (e.g., reference assembly vs
+                 alternate assemblies provided by other groups or
+                 representing other strains)
+ 
+10. weight       weight value for object. For all maps, a lower
+                 weight signifies a higher confidence value for the
+                 map object.
+                 1= finished sequence (Blue in MapViewer)
+                 3= WGS sequence (Green in MapViewer)
+                 5= Draft sequence (Orange in MapViewer)
+ 
+ 
+scaffold_names file:
+--------------------
+This file provides alternative names used for the genomic scaffolds in
+each specified assembly.
+ 
+columns:
+ 
+1:   Assembly label
+ 
+2:   Genome Center name or na
+ 
+3:   Genomic RefSeq Accession.version
+ 
+4:   GenBank Accession.version
+ 
+5:   NCBI name
+     (used prior to assignment of the RefSeq Accession.version).
+ 
+na: not applicable. na in column 4 indicates that the scaffold
+sequence was revised and that no GenBank version of the scaffold
+exist. This can be due to replacement of foreign contaminants by gaps
+in the RefSeq sequence or a difference in orientation.
+ 
+ 
+=====================================
+CHR_## - Chromosome directories
+=====================================
+ 
+The files in the chromosome directories provide concatenated sequence
+data for scaffolds that have been assembled from individual GenBank
+records.
+ 
+The order of the scaffolds in these files does not represent their
+order on the chromosome.
+ 
+The scaffolds in the chromosome FTP directories are the same ones that
+are presented on the NCBI Map Viewer; the sequences include the
+reference assembly and may include alternate assemblies when
+available.
+ 
+The constructed scaffolds are reference sequences (RefSeq) and are not
+part of the GenBank database. GenBank contains archival sequence
+records as they were submitted by the producers of the data. See the
+RefSeq web site for more information:
+  http://www.ncbi.nih.gov/RefSeq/
+ 
+ 
+=====================================
+Assembled_chromosomes directory
+=====================================
+ 
+(directory available if at least some of the scaffolds are assembled
+into chromosomes)
+ 
+The files in this directory, and its sub-directories, provide data for
+all the top-level objects in each assembly: assembled chromosomes,
+unlocalized scaffolds (those scaffolds that are associated with a
+specific chromosome but which cannot be ordered or oriented on that
+chromosome), unplaced scaffolds (those scaffolds that are not
+associated with any chromosome), and in some cases scaffolds from
+alternate locus groups or genome patches (see the NCBI Assembly Model
+web page for an explanation of these terms:
+http://www.ncbi.nlm.nih.gov/genome/assembly/model).
+ 
+The filenames include the assembly name. To obtain the complete set of
+data for an assembly, download all the files for the desired format
+that contain the same assembly name. Depending on the particular
+assembly, this set may include multiple chromosomes files with names
+including a "chr*" term, an unlocalized scaffold file with
+"unlocalized" in its name, an unplaced scaffold file with "unplaced"
+in its name, and an alternate scaffold file with "alts" in its name.
+ 
+ 
+chr_NC_gi file:
+---------------
+The chr_NC_gi file provides the accession and gi for the reference
+sequence (RefSeq) chromosome records, and any complete chromosomes
+from alternate assemblies.
+ 
+columns:
+ 1. chromosome
+ 2. chromosome accession.version
+ 3. chromosome gi
+ 4. assembly name
+ 5. assembly accession.version
+ 
+ 
+chr_accessions_{assembly name} file:
+------------------------------------
+The chr_accessions_* file provides the correspondence between the
+RefSeq and GenBank records for each chromosome in the assembly.
+ 
+columns:
+ 1. Chromosome
+ 2. RefSeq Accession.version
+ 3. RefSeq gi
+ 4. GenBank Accession.version
+ 5. GenBank gi
+ 
+na: not applicable. na in column 4 and 5 indicates that the
+chromosome sequence was revised and that no GenBank version of the
+scaffold exist.
+ 
+ 
+unlocalized_ and unplaced_accessions_{assembly name} files:
+-----------------------------------------------------------
+The unlocalized_* and unplaced_* files provide the correspondence
+between the RefSeq and GenBank records for scaffolds that are,
+respectively, unlocalized on a chromosome or unplaced. If an assembly
+includes scaffolds from alternate locus groups or genome patches, then
+accession, version and gi data for these scaffolds is provided in a
+file named alts_accessions_{assembly name}.
+ 
+columns:
+ 1. Chromosome (Un, if unplaced scaffold)
+ 2. RefSeq Accession.version
+ 3. RefSeq gi
+ 4. GenBank Accession.version
+ 5. GenBank gi
+ 
+na: not applicable. na in column 4 and 5 indicates that the
+scaffold sequence was revised and that the GenBank and RefSeq
+sequences differ or that no GenBank accession was assigned.
+ 
+ 
+seq sub-directory:
+------------------
+The files in this directory provide assembled sequences for the
+chromosomes and other top-level objects in FASTA format. Runs of Ns
+are inserted into the chromosome sequence wherever there is a gap in
+the scaffold layout, e.g. between scaffolds, at the centromere, at the
+telomeres, or at large regions of heterochromatin. The chromosome
+coordinates of features placed on chromosomes, as displayed in Map
+Viewer or provided in the sequence based map files located in the
+/mapview directory, correspond to positions on these assembled
+chromosome sequences. The feature coordinates used for unlocalized or
+unplaced scaffolds use the coordinate system of each scaffold.
+ 
+Files with the suffix .fa.gz contain unmasked sequences; files with
+the suffix .mfa.gz contain sequences masked using WindowMasker or
+RepeatMasker (lower case) and the results of a screen against
+foreign sequences (N's).
+ 
+Each file is named according to the abbreviation for the species,
+whether the assembly is the reference assembly (_ref_) or an alternate
+assembly (_alt_), the assembly name, and either the chromosome label
+or the scaffold group (unlocalized, unplaced, or alts).
+ 
+ 
+agp sub-directory:
+------------------
+Files describing, in AGP format, how the chromosomes and other
+top-level objects are assembled from their component sequence
+records. Filenames follow the convention described for the seq
+sub-directory and have the suffix .agp.gz.
+ 
+columns:
+ 
+ 1:   chromosome, as chr+chromosome designation, or scaffold name
+  
+ 2:   beginning base on chromosome or scaffold
+  
+ 3:   ending base on chromosome or scaffold
+  
+ 4:   fragment number
+  
+ 5:   fragment type (D=Draft, F=Finished, W=Whole genome shotgun
+      (WGS) N=NN gap)
+  
+ 6:   if sequence, value = accession.version of the component
+      sequence from which bases are derived
+      if N-gap, value = number of N's
+  
+ 7:   if sequence, value = beginning base of component sequence
+      if N-gap, value = keyword "fragment"
+{fragment keyword indicates gap between fragments within a
+      clone or between fragments of overlapping clones}
+  
+ 8:   if sequence, value = ending base of component sequence
+      if N-gap, value=yes - some sort of order and orientation by
+      mRNA, EST or BAC end pair
+      if N-gap,value=no - no order and orientation between
+      flanking fragments
+  
+ 9:   + if accession is positive orientation to chromosome
+      - otherwise
+      (column 9 for sequence only)
+ 
+ 
+gbs sub-directory:
+------------------
+Files providing annotation, in GenBank flat file format, for the
+chromosomes and other top-level objects. Filenames follow the
+convention described for the seq sub-directory and have the suffix
+.gbs.gz.
+ 
+ 
+=====================================
+RNA, protein and other directories
+=====================================
+ 
+The RNA and protein directories provide sequence files in three
+formats representing all of the mRNA, non-coding transcript, and
+protein model reference sequences (RefSeq) exported as part of the
+genome annotation process.
+ 
+In addition, fasta files containing the comprehensive set of Gnomon
+predictions are also provided. These correspond to the Map Viewer
+'Model Transcripts' map and include a supported subset that is
+instantiated as model RefSeq records (with accession prefix XM_,
+XR_, or XP_) and an 'Ab initio' subset that is not instantiated into
+model RefSeq. These purely 'Ab initio' models are not assigned
+accession numbers, or tracked between annotation releases. They are an
+experimental dataset. Additional information about this prediction
+program is available at:
+  http://www.ncbi.nlm.nih.gov/genome/guide/gnomon.shtml
+ 
+ 
+RNA directory:
+--------------
+File Name             Format         Contents
+---------------------------------------------------------------------
+Gnomon_mRNA.fsa.gz    FASTA          transcript predictions
+rna.asn.gz            ASN.1          annotated transcripts
+rna.fa.gz             FASTA          annotated transcripts
+rna.gbk.gz            Flat File      annotated transcripts
+ 
+protein directory:
+------------------
+File Name             Format         Contents
+--------------------------------------------------------------------
+Gnomon_prot.fsa.gz    FASTA          protein predictions
+protein.fa.gz         FASTA          annotated proteins
+protein.gbk.gz        Flat File      annotated proteins
+ 
+ 
+Accession Format      Molecule       Type
+----------------------------------------------------
+NM_xxxxxx             mRNA           curated RefSeq*
+NR_xxxxxx             transcript     curated RefSeq*
+NP_xxxxxx             protein        curated RefSeq*
+YP_xxxxxx             protein        curated RefSeq*
+XM_xxxxxx             mRNA           model@
+XR_xxxxxx             transcript     model@
+XP_xxxxxx             protein        model@
+ 
+* curated RefSeq= these RefSeq records are subject to review and
+curation by NCBI's RefSeq staff, and may be updated between annotation
+releases. Note that the curation process is ongoing. Note that the
+accession prefix may be followed by either 6 or 9 digits (e.g.,
+NM_123456 and NM_123456789).
+ 
+@ model RefSeq= these RefSeq records are products of the genome
+annotation processing and are not subject to curation and updates
+between annotation releases. Model RefSeqs represent Gnomon
+predictions that are supported by transcript and/or protein homology.
+ 
+Additional information about the curated RefSeqs (NM_, NR_, NP_
+accession prefix) is available at:
+  http://www.ncbi.nlm.nih.gov/RefSeq/
+  ftp://ftp.ncbi.nih.gov/refseq/
+ 
+Additional information about the gene models is available at
+  http://www.ncbi.nlm.nih.gov/genome/annotation_euk/process/
+ 
+ 
+other directory:
+----------------
+File Name                     Format     Contents
+---------------------------------------------------------------------
+pseudo_without_product.fa.gz  FASTA      pseudogenes without products
+ 
+This file provides the genomic sequence corresponding to pseudogene
+and other gene regions which do not have any associated transcribed
+RNA products or translated protein products. It includes annotated
+gene regions that require rearrangement to provide the final product,
+e.g. immunoglobulin segments. These sequences are not assigned
+accession numbers, and are derived directly from the assembled genomic
+sequences.
+ 
+ 
+====
+GFF
+====
+The files in this directory provide the features annotated on the
+genomic sequences of the assembly(ies) in GFF version 3 format,
+according to specifications version 1.20 at:
+http://www.sequenceontology.org/gff3.shtml
+See more details in:
+ftp://ftp.ncbi.nlm.nih.gov/genomes/README_GFF3.txt
+ 
+{alt,ref}_{assembly_name}_scaffolds.gff3.gz
+-------------------------------------------
+Features annotated on {assembly_name} in scaffold coordinates.
+ 
+{alt,ref}_{assembly_name}_top_level.gff3.gz
+-------------------------------------------
+Features annotated on {assembly_name} in top-level object coordinates.
+The top-level objects are: assembled chromosomes, unlocalized
+scaffolds (those scaffolds that are associated with a specific
+chromosome but which cannot be ordered or oriented on that
+chromosome), unplaced scaffolds (those scaffolds that are not
+associated with any chromosome), and in some cases scaffolds from
+alternate locus groups or genome patches (see the NCBI Assembly Model
+web page for an explanation of these terms:
+http://www.ncbi.nlm.nih.gov/genome/assembly/model).
+ 
+ 
+======
+Gnomon
+======
+The files in this directory provide the Gnomon models predicted on
+the genomic sequences of the assembly(ies) in GFF version 3 format,
+according to specifications version 1.20 at:
+http://www.sequenceontology.org/gff3.shtml
+See more details in:
+ftp://ftp.ncbi.nlm.nih.gov/genomes/README_GFF3.txt
+ 
+These models correspond to the Map Viewer 'Model Transcripts' map and
+include a supported subset that is instantiated as model RefSeq
+records (with accession prefix XM_, XR_, or XP_) and an 'Ab initio'
+subset that is not instantiated into model RefSeq. These purely
+'Ab initio' models are not assigned accession numbers, or tracked
+between annotation releases. They are an experimental dataset.
+Additional information about this prediction program is available at:
+  http://www.ncbi.nlm.nih.gov/genome/guide/gnomon.shtml
+ 
+{alt,ref}_{assembly_name}_gnomon_scaffolds.gff3.gz
+--------------------------------------------------
+Gnomon models predicted on {assembly_name} in scaffold coordinates.
+ 
+{alt,ref}_{assembly_name}_gnomon_top_level.gff3.gz
+--------------------------------------------------
+Gnomon models predicted on {assembly_name} in top-level object
+coordinates. The top-level objects are: assembled chromosomes,
+unlocalized scaffolds (those scaffolds that are associated with a
+specific chromosome but which cannot be ordered or oriented on that
+chromosome), unplaced scaffolds (those scaffolds that are not
+associated with any chromosome), and in some cases scaffolds from
+alternate locus groups or genome patches (see the NCBI Assembly Model
+web page for an explanation of these terms:
+http://www.ncbi.nlm.nih.gov/genome/assembly/model).
+ 
+ 
+=====================================
+mapview directory
+=====================================
+ 
+This directory contains assembly and annotation data used to provide
+the displays available for this organism in Map Viewer:
+http://www.ncbi.nlm.nih.gov/mapview
+ 
+Most of the files in this directory contain headers that document the
+content of the fields in each file. Additional information on some
+files is provided below.
+ 
+org_transcript.gff.gz and zoo_transcript.gff.gz files
+-----------------------------------------------------
+These files provide cDNA-to-Genomic, or spliced sequence
+alignments. These files include same-species and cross-species
+alignments, respectively. Alignments are generated via the Splign
+alignment tool:
+http://www.ncbi.nlm.nih.gov/sutils/splign
+Information on indels has not been included.
+ 
+The file format is GFF version 3 according to specifications version
+1.07:
+http://song.sourceforge.net/gff3.shtml
+ 
+The content is in chromosomal coordinates or scaffold coordinates for
+unplaced scaffolds. The accession.version of a genomic reference
+sequence (NCBI RefSeq) is used as the value of the GTF/GFF 'seqid'
+column. (Examples of accession.version are NC_* or AC_* for
+chromosomes and NW_* or NT_* for scaffolds.) The genome assembly and
+chromosome names for the chromosome sequences can be obtained from the
+file Assembled_chromosomes/chr_NC_gi. Likewise, the file
+mapviewer/seq_contig.md.gz provides the genome assembly and chromosome
+assignment, if any, for the unplaced scaffolds.
+ 
+These files replace org_transcript.gtf.gz and zoo_transcript.gtf.gz
+which were in a format compatible with GFF version 2 and GTF.
+ 
+ 
+=====================================
+Mapping_data directory
+=====================================
+ 
+This data is a link to the UniSTS ftp site containing non-sequence
+based mapping information for this organism's STS.
+ 
+ 
+=====================================
+ARCHIVE directory
+=====================================
+ 
+This directory is provided to maintain archival annotation release
+data.
+ 
+ 
+======================================
+FOSMIDS directory
+======================================
+ 
+Directory for FOSMID sequence data.
+ 
+ 
+=====================================
+File extensions
+=====================================
+ 
+File extensions impart information about the file format as follows:
+ 
+*.asn.gz = ASN.1 file, print form
+ 
+*.fa.gz  = FASTA file format, compressed
+ 
+*.fsa.gz = FASTA file format, compressed
+ 
+*.mfa.gz = masked FASTA file format, compressed
+           (repeats identified with WindowMasker or RepeatMasker are
+           lower case and foreign spans are replaced with N's).
+ 
+*.gbk.gz = GenBank flat file format (annotation + sequence),
+           compressed
+ 
+*.gbs.gz = GenBank summary file format (annotation only), compressed
+           The *.gbs file format does not contain sequence data,
+           but instead contains a "CONTIG" field showing how the
+           scaffold or chromosome is assembled from its components.
+ 
+*.gff3.gz = GFF version 3 file format, compressed
+ 
+ 
+=====
+Notes
+=====
+* The annotations in the *.gbk and *.gbs files currently include genes,
+conserved protein domains, as well as microRNAs, defined by sequence
+obtained from miRBase (Griffiths-Jones S, Grocock RJ, van Dongen S,
+Bateman A, Enright AJ. 2006. Nucleic Acids Res. 34:D140-D144) and
+placed by Splign (Kapustin Y, Souvorov A, Tatusova T and Lipman D.
+2008. Biology Direct 3:20), and tRNA features annotated by
+tRNAscan-SE (Lowe TM, Eddy SR. 1997. Nucleic Acids Res. 25:955-64).
+ 
+* Variation data from the most recent dbSNP build can be obtained from
+the dbSNP FTP site:
+ ftp://ftp.ncbi.nih.gov/snp/
+ 
+* Gene symbols in this directory are not updated with every update
+to Entrez Gene. Suggestions for how to convert a set of GeneIDs into
+current symbols and names is provided in this FAQ from Entrez Gene:
+ 
+http://www.ncbi.nlm.nih.gov/entrez/query/static/help/genefaq.html#faq_g4
+ 
+######################################################################
