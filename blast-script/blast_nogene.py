@@ -5,22 +5,20 @@ import glob
 import urllib2
 import subprocess
 
-def blast_sequence(sequence, gbk):
+def blast_sequence(sequence):
     # Write sequence into file to blast
     with open("sequence.fasta", "w") as fasta_sequence:
         fasta_sequence.write(">%s" % sequence)
 
-    # Blast sequence
-    
-    # Local or Remote blast against nr database with filtering using organism 
+    # Local or Remote blast against nr database with filtering using organism
     #command = "blastn  -entrez_query 'Pteropus alecto[Organism] OR Hendra virus[Organism]' -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
 
     # Local or Remote blast against nr database
     command = "blastn  -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
-
+    
     # Local blast: BatVirus
     #command = "blastn -db BatVirus -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out"
-
+    
     # Local blast: Pteropus alecto
     #command = "blastn -db ptv -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out"
     
@@ -35,30 +33,12 @@ def blast_sequence(sequence, gbk):
         label, fpkm_value = sequence.split("\n")[0].split()[:]
         transcript_id = label.split("-")[1]
 
-        # Find gene name
-        gene_name = ""
-        if gbk:
-            gene_name = gbk.get(accession_number, "")
-        else:
-            for report in ["genbank", "gbwithparts"]:
-                url = "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=%s&db=nuccore&report=%s&retmode=text" % (gene_gi, report)
-                data = urllib2.urlopen(url).readlines()
-                i = 0
-                for j, t in enumerate(data):
-                    t = t.strip()
-                    if t.startswith("gene"):
-                        i = j + 1
-                        break
-                if i != 0:
-                    gene_name = data[i].strip().replace("/gene=", "").replace('"', "")
-                    break
-
         # Remove temporary files
         subprocess.call("rm -f sequence.fasta sequence.out", shell=True)
 
-        return [accession_number, gene_name, transcript_id, fpkm_value]
+        return [accession_number, transcript_id, fpkm_value]
 
-    return ["", "", "", ""]
+    return ["", "", ""]
 
 
 # Start program
@@ -66,13 +46,8 @@ if __name__ == '__main__':
 
     # Check if one need to use blast databases remotelly or not
     remote_arg = ""
-    gbk_filename = ""
     if len(sys.argv) > 1 and sys.argv[1] == "-remote":
         remote_arg = "-remote"
-    else:
-        for arg in sys.argv[1:]:
-            if os.path.exists(arg):
-                gbk_filename = arg
 
     # Input data directory
     data_directory = ""
@@ -81,30 +56,6 @@ if __name__ == '__main__':
         if not (data_directory and os.path.exists(data_directory)):
             print "Error: wrong data directory path"
             data_directory = ""
-
-    # Read gene names from gbk file
-    gbk = {}
-    if gbk_filename:
-        print "Parsing %s..." % gbk_filename
-
-        accession_number = ""
-        gene_name = ""
-
-        for line in open(gbk_filename):
-            line = line.strip()
-
-            if line.startswith("VERSION"):
-                if accession_number and gene_name:
-                    gbk[accession_number] = gene_name
-                accession_number = line.split()[1]
-                gene_name = ""
-                continue
-
-            if line.startswith("/gene=") and not gene_name:
-                gene_name = line.replace("/gene=", "").replace('"', "")
-
-        if accession_number and gene_name:
-            gbk[accession_number] = gene_name
 
     # Input species, delimeter is comma or space
     #species = []
@@ -144,7 +95,7 @@ if __name__ == '__main__':
         report = fasta.replace("_fixed.fasta", ".csv")
         with open(report, 'wb') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["Accession Number", "Gene Symbol", "Transcript Id", "FPKM Value"])
+            writer.writerow(["Accession Number", "Transcript Id", "FPKM Value"])
 
             # Iterate via sequences
             sequence = ""
@@ -152,7 +103,7 @@ if __name__ == '__main__':
             for line in open(fasta):
                 if line.startswith('>') and sequence.startswith('>'):
                         # Run blast
-                        row = blast_sequence(sequence, gbk)
+                        row = blast_sequence(sequence)
                         # Save row
                         writer.writerow(row)
                         # Start new sequence
@@ -163,6 +114,6 @@ if __name__ == '__main__':
             # If the last sequence is not empty
             if sequence and sequence.startswith('>'):
                 # Run blast
-                row = blast_sequence(sequence, gbk)
+                row = blast_sequence(sequence)
                 # Save row
                 writer.writerow(row)
