@@ -76,7 +76,7 @@ if __name__ == '__main__':
         report = fasta.replace("_fixed.fasta", ".csv")
         with open(report, 'wb') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["Accession Number", "Transcript Id", "FPKM Value"])
+            writer.writerow(["Accession Number", "FPKM Value"])
 
             # Iterate via sequences
             sequence = ""
