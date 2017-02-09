@@ -21,12 +21,11 @@ def blast_sequence(sequence):
         gene_gi = lines[2]
         accession_number = lines[4]
         label, fpkm_value = sequence.split("\n")[0].split()[:]
-        transcript_id = label.split("-")[1]
 
         # Remove temporary files
         subprocess.call("rm -f sequence.fasta sequence.out", shell=True)
 
-        return [accession_number, transcript_id, fpkm_value]
+        return [accession_number, fpkm_value]
 
     return ["", "", "", ""]
 
