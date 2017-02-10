@@ -96,7 +96,7 @@ if __name__ == '__main__':
     #    species = species.replace(",", " ").split()
 
     # Read FASTA files and fix header line format
-    for fasta in glob.glob(os.path.join("test_fasta_results", "*.fasta")):
+    for fasta in glob.glob(os.path.join("uploads", "*.fasta")):
         # Skip fixed file
         if "_fixed.fasta" in fasta:
             continue
@@ -120,7 +120,7 @@ if __name__ == '__main__':
                 fasta_fixed.write(line)
 
     # BLAST fasta files and find gene
-    for fasta in glob.glob(os.path.join("test_fasta_results", "*_fixed.fasta")):
+    for fasta in glob.glob(os.path.join("uploads", "*_fixed.fasta")):
         print "Blast file %s ..." % fasta
 
         # Open CSV file to write results
