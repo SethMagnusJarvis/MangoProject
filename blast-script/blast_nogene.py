@@ -14,13 +14,13 @@ def blast_sequence(sequence):
     #command = "blastn  -entrez_query 'Pteropus alecto[Organism] OR Hendra virus[Organism]' -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
 
     # Local or Remote blast against nr database
-    command = "blastn  -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
+    #command = "blastn  -db nr -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out " + remote_arg
     
     # Local blast: BatVirus
     #command = "blastn -db BatVirus -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out"
     
     # Local blast: Pteropus alecto
-    #command = "blastn -db ptv -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out"
+    command = "blastn -db ptv -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out"
     
     subprocess.call(command, shell=True)
 
@@ -92,8 +92,11 @@ if __name__ == '__main__':
         print "Blast file %s ..." % fasta
 
         # Open CSV file to write results
-        report = fasta.replace("_fixed.fasta", ".csv")
-        with open(report, 'wb') as csvfile:
+        components = fasta.split('/', -1)
+        report = components[-1].replace("_fixed.fasta", ".csv")
+        report_path = os.path.join("./csv/", report)
+        
+        with open(report_path, 'wb') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             writer.writerow(["Accession Number", "Transcript Id", "FPKM Value"])
 
