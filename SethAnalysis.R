@@ -4,7 +4,7 @@ library("ggplot2")
 setwd(getwd())
 
 #load data
-data <- as.matrix(read.csv("CSV/DataSet.csv"))
+data <- as.matrix(read.csv("CSV/DataSet(1).csv"))
 
 #produce a list of ascession numbers
 list <- data[,1]
