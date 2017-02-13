@@ -1,5 +1,6 @@
 library("limma")
 library("ggplot2")
+library("calibrate")
 
 setwd(getwd())
 
@@ -39,15 +40,22 @@ contrast.matrix <- makeContrasts(EightHours-Uninfected, OneDay-Uninfected, OneDa
 fit2 <- contrasts.fit(fit, contrast.matrix)
 fit2 <- eBayes(fit2)
 
-#produce a matrix of the top differentially expressed genes
+#produce a matrix of the top differentially expressed genes and output them to files
 #Uninfected vs 8 hours
-topTable(fit2, coef=1, adjust="BH")
+U8TT <- topTable(fit2, coef=1, adjust="BH")
+U8TT <- U8TT[,c(1,3,4,5)]
+write.table(U8TT, file='U8TT.tsv', quote=FALSE, sep='\t')
+
 
 #Uninfected vs 24 hours
-topTable(fit2, coef=2, adjust="BH")
+U24TT <- topTable(fit2, coef=2, adjust="BH")
+U24TT <- U24TT[,c(1,3,4,5)]
+write.table(U24TT, file='U24TT.tsv', quote=FALSE, sep='\t')
 
 #8 Hours vs 24 hours
-topTable(fit2, coef=1, adjust="BH")
+infectedTT <- topTable(fit2, coef=1, adjust="BH")
+infectedTT <- infectedTT[,c(1,3,4,5)]
+write.table(infectedTT, file='infectedTT.tsv', quote=FALSE, sep='\t')
 
 results <- decideTests(fit2)
 
@@ -55,3 +63,11 @@ vennDiagram(results)
 
 plot(eset)
 
+#pca plot, can't work out labels on items
+#says "incorrect number of dimensions
+pc = prcomp(t(exprs(eset)))
+plot( pc$x[ , 1:2 ])
+textxy(pc[,1:2], colnames(data))
+
+#heatmap of top 100 genes
+heatmap(exprs(eset[1:100,]))
