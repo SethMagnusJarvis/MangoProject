@@ -44,18 +44,18 @@ fit2 <- eBayes(fit2)
 #Uninfected vs 8 hours
 U8TT <- topTable(fit2, coef=1, adjust="BH")
 U8TT <- U8TT[,c(1,3,4,5)]
-write.table(U8TT, file='U8TT.tsv', quote=FALSE, sep='\t')
+write.table(U8TT, file='ROutput/U8TT.tsv', quote=FALSE, sep='\t')
 
 
 #Uninfected vs 24 hours
 U24TT <- topTable(fit2, coef=2, adjust="BH")
 U24TT <- U24TT[,c(1,3,4,5)]
-write.table(U24TT, file='U24TT.tsv', quote=FALSE, sep='\t')
+write.table(U24TT, file='ROutput/U24TT.tsv', quote=FALSE, sep='\t')
 
 #8 Hours vs 24 hours
 infectedTT <- topTable(fit2, coef=1, adjust="BH")
 infectedTT <- infectedTT[,c(1,3,4,5)]
-write.table(infectedTT, file='infectedTT.tsv', quote=FALSE, sep='\t')
+write.table(infectedTT, file='ROutput/infectedTT.tsv', quote=FALSE, sep='\t')
 
 results <- decideTests(fit2)
 
@@ -66,8 +66,12 @@ plot(eset)
 #pca plot, can't work out labels on items
 #says "incorrect number of dimensions
 pc = prcomp(t(exprs(eset)))
+png('ROutput/PCA.png')
 plot( pc$x[ , 1:2 ])
+dev.off()
 textxy(pc[,1:2], colnames(data))
 
 #heatmap of top 100 genes
+png('ROutput/Top100Heat.png')
 heatmap(exprs(eset[1:100,]))
+dev.off()
