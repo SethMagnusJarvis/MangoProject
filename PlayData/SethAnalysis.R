@@ -1,5 +1,4 @@
 library("limma")
-library("ggplot2")
 library("Biobase")
 #library("calibrate")
 
@@ -30,7 +29,7 @@ logdata <- log2(data)
 design <- model.matrix(~ 0+factor(c(1,1,1,2,2,2,3,3,3)))
 colnames(design) <- c("Uninfected", "EightHours", "OneDay")
 
-+#produce an expression set from the data
+#produce an expression set from the data
 eset <- ExpressionSet(assayData=logdata)
 
 #Produces a linear model
@@ -57,20 +56,13 @@ infectedTT <- topTable(fit2, coef=1, adjust="BH")
 infectedTT <- infectedTT[,c(1,3,4,5)]
 write.table(infectedTT, file='ROutput/infectedTT.tsv', quote=FALSE, sep='\t')
 
-results <- decideTests(fit2)
-
-vennDiagram(results)
-
-plot(eset)
-
-#produce plots and output them to folder ROutput as pngs
-#pca plot, can't work out labels on items
-#says "incorrect number of dimensions
+#produce plots and output as png files
+#pca plot
 pc = prcomp(t(exprs(eset)))
 png('ROutput/PCA.png')
 plot( pc$x[ , 1:2 ])
+text(pc$x[,1:2], colnames(data), pos = 4)
 dev.off()
-textxy(pc[,1:2], colnames(data))
 
 #heatmap of top 100 genes
 png('ROutput/Top100Heat.png')
