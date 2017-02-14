@@ -1,6 +1,7 @@
 library("limma")
 library("ggplot2")
-library("calibrate")
+library("Biobase")
+#library("calibrate")
 
 setwd(getwd())
 
@@ -29,8 +30,7 @@ logdata <- log2(data)
 design <- model.matrix(~ 0+factor(c(1,1,1,2,2,2,3,3,3)))
 colnames(design) <- c("Uninfected", "EightHours", "OneDay")
 
-
-#produce an expression set from the data
++#produce an expression set from the data
 eset <- ExpressionSet(assayData=logdata)
 
 #Produces a linear model
@@ -74,4 +74,8 @@ textxy(pc[,1:2], colnames(data))
 #heatmap of top 100 genes
 png('ROutput/Top100Heat.png')
 heatmap(exprs(eset[1:100,]))
+dev.off()
+
+png('ROutput/VolcanoPlot.png')
+volcanoplot(fit2)
 dev.off()
