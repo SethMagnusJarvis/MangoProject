@@ -63,6 +63,7 @@ vennDiagram(results)
 
 plot(eset)
 
+#produce plots and output them to folder ROutput as pngs
 #pca plot, can't work out labels on items
 #says "incorrect number of dimensions
 pc = prcomp(t(exprs(eset)))
@@ -76,6 +77,7 @@ png('ROutput/Top100Heat.png')
 heatmap(exprs(eset[1:100,]))
 dev.off()
 
+#Prouce volcano pot of the fited model
 png('ROutput/VolcanoPlot.png')
 volcanoplot(fit2)
 dev.off()
