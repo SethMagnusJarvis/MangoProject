@@ -1,6 +1,7 @@
 #load libraries
 library("limma")
 library("Biobase")
+library("gridExtra")
 
 #correctly load the data as a matrix
 #load data
@@ -37,18 +38,23 @@ fit2 <- eBayes(fit2)
 #Uninfected vs 8 hours
 U8TT <- topTable(fit2, coef=1, adjust="BH")
 U8TT <- U8TT[,c(1,3,4,5)]
-write.table(U8TT, file='static/U8TT.tsv', quote=FALSE, sep='\t')
-
+pdf("static/U8TT.pdf", height=11, width=8.5)
+grid.table(U8TT)
+dev.off()
 
 #Uninfected vs 24 hours
 U24TT <- topTable(fit2, coef=2, adjust="BH")
 U24TT <- U24TT[,c(1,3,4,5)]
-write.table(U24TT, file='static/U24TT.tsv', quote=FALSE, sep='\t')
+pdf("static/U24TT.pdf", height=11, width=8.5)
+grid.table(U24TT)
+dev.off()
 
 #8 Hours vs 24 hours
 infectedTT <- topTable(fit2, coef=1, adjust="BH")
 infectedTT <- infectedTT[,c(1,3,4,5)]
-write.table(infectedTT, file='static/infectedTT.tsv', quote=FALSE, sep='\t')
+pdf("static/infectedTT.pdf", height=11, width=8.5)
+grid.table(infectedTT)
+dev.off()
 
 #produce plots and output as png files
 #pca plot
