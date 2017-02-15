@@ -6,19 +6,18 @@ import math
 def fixsort(data):
 	#drops NA values
 	data = data.dropna(axis=0, how='any')
-	#sorts columns by Accession then by FPKM (although it seems to have a slight misunderstanding on how to sort
-        #I think the error might be casued by it being ascending sort but it doesn't sort it as a number but rather
-	#as a string of characters, so if it's double digits they'll be at the top but past that it will select the
-	#lowest FPKM, would need to tell it to interpret the numbers as numbers and not strings
-	data = data.sort_values(by=['Accession', 'FPKM'], ascending = False)
+	#sorts columns by Accession then by FPKM 
+	data = data.sort_values(by=['Accession', 'FPKM'])
 	#removes instance of Accession which appears becasue of the way files are imported
 	data = data[data.Accession != 'Accession']
-	#checks every record to see if the first value is a number and removes those which are (weird quirk again)
+	
+	#checks every record to see if the first value is a number and removes those which are
 	for x in data.Accession:
 		listy = list(x)
 		if listy[0] == '1' or listy[0] == '2' or listy[0] == '3'or listy[0] == '4'or listy[0] == '5'or listy[0] == '6'or listy[0] == '7'or listy[0] == '8'or listy[0] == '9' :
 			data = data[data.Accession != x]
-	#drops duplicate ascession numbers keeping one with highest FPKM
+			
+	#drops duplicate ascession numbers keeping one with highest FPKM (because it's sorted to be at the top)
 	data = data.drop_duplicates(subset='Accession')
 	return(data)
 
@@ -26,7 +25,6 @@ def fixsort(data):
 source_dir = 'Upload/'
 path = 'CSV/'
 files = glob.iglob(os.path.join(source_dir, "*.csv"))
-
 for file in files:
     if os.path.isfile(file):
         shutil.copy2(file, path)
@@ -37,11 +35,12 @@ files = os.listdir(path)
 filenames=(list(files))
 AccessionList = []
 mycols = ['Accession', 'FPKM']
+
 #Extract ascession codes from every file in directory 
 for index, file in enumerate(files):
 	if index==0:
 		#initialise matrix by loading first file into dataframe
-		#read the csv skipping lines which for some reason have 3 commas meaning they're interpreded as 4 sections and locking the length to 2 columns by matching it to the length of my cols 
+		#read the csv skipping lines which don't have 2 cols (as dictated by making the names mycols)
 		mtrix = fixsort(pd.read_csv(path+file, error_bad_lines=False, names=mycols))		
 	else:
 		#extend datamatrix by merging with subsequent dataframe
@@ -49,6 +48,7 @@ for index, file in enumerate(files):
 		data = fixsort(pd.read_csv(path+file, error_bad_lines=False, names=mycols))
 		# merge data from this file to matrix
 		mtrix = pd.merge(mtrix,data, on='Accession', how='outer')
+		
 #fill empty slots with 0.01
 mtrix = mtrix.fillna(0.01)
 #replace 0s with 0.01
