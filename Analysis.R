@@ -14,7 +14,7 @@ row.names(data) <- list
 #remove weird random column which I think is a numerical interpretation of the Ascession code
 data <- data[,-1]
 #add sample names as col names
-colnames(data)<-c("G1S1", "G1S2", "G1S3","GS1", "G2S2", "G2S3","G3S1", "G3S2", "G3S3")
+colnames(data)<-c("G1S1", "G1S2", "G1S3","G2S1", "G2S2", "G2S3","G3S1", "G3S2", "G3S3")
 #log the matrix
 logdata <- log2(data)
 
