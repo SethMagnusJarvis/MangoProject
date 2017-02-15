@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>RNA-seq web tool</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+    <script src="https://use.fontawesome.com/20069bc398.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class ="active">
+              <a href="showSignIn">Sign in</a>
+            </li>
+          </ul>
+        </nav>
+        <h5 class="text-muted">RNA-seq Analyser</h5>
+      </div> <!-- header -->
+
+      <div class="jumbotron jumbotron">
+       <h3> Principal Component Analysis</h3>
+        <img src="static/PCA.png">
+      </div>
+      
+     <div class="jumbotron jumbotron">
+       <h3> Hierrarchical clustering</h3>
+        <img src="static/Top100Heat.png">
+      </div>
+      
+      <div class="jumbotron jumbotron">
+       <h3> Volcano plot</h3>
+        <img src="static/VolcanoPlot.png">
+      </div>
+
+
+      
+  </body>
+
+
+</html>
