@@ -1,8 +1,7 @@
 # We'll render HTML templates and access data sent by POST
 # using the request object from flask. Redirect and url_for
 # will be used to redirect the user once the upload is done
-# and send_from_directory will help us to send/show on the
-# browser the file that the user just uploaded
+# and. We will used subprocess to run command for blast, metrix and analysis
 
 from flask import Flask, request, url_for, render_template, redirect, flash, send_from_directory, jsonify, abort
 import os
@@ -11,19 +10,22 @@ from subprocess import Popen, PIPE
 import subprocess
 from os import rename, listdir
 import threading
-import uuid
 import sys
 import csv
 import glob
 import urllib2
 import subprocess
+import pandas as pd
+import glob, os, shutil
+import numpy
+import math
 
 
 # initialise the Flask application
 app = Flask(__name__)
 
 # This is the path to the upload directory
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['UPLOAD_FOLDER'] = 'Upload/'
 # These are the extension that we are accepting to be uploaded
 app.config['ALLOWED_EXTENSIONS'] = set(['fa', 'fasta'])
 
@@ -32,9 +34,9 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
-# rename files in the uploads folder
+# Rename files in the upload folder
 def rename_file():
- path = '/home/abdou/myproject/app/uploads'
+ path = '/home/abdou/myproject/app/Upload'
  files = os.listdir(path)
  filenames=(list(files))
 
@@ -46,109 +48,6 @@ def rename_file():
     if S == 4:
      G=G+1
      S=1
-
-# run blast in the background 
-#background_scripts={}
-
-#def run_script(id):
- #subprocess.call(["/home/abdou/myproject/app/blast.py", "sequence", "gbk"])
- #background_script[id]=True
-
-
-#blast function 
-def blast_sequence(sequence):
-    # Write sequence into file to blast
-    with open("sequence.fasta", "w") as fasta_sequence:
-        fasta_sequence.write(">%s" % sequence)
-
-    # Blast sequence
-    command = "blastn -db Database/BtVrDb -outfmt '6 qseqid sseqid pident' -query sequence.fasta -out sequence.out "
-    subprocess.call(command, shell=True)
-
-    # Get GI, accession number and FPKM value
-    lines = open("sequence.out").readlines()
-    if lines:
-        lines = lines[0].replace("\t", "|").split("|")
-        gene_gi = lines[2]
-        accession_number = lines[4]
-        label, fpkm_value = sequence.split("\n")[0].split()[:]
-
-        # Remove temporary files
-        subprocess.call("rm -f sequence.fasta sequence.out", shell=True)
-
-        return [accession_number, fpkm_value]
-
-    return ["", "", "", ""]
-
-
-# Start program
-if __name__ == '__main__':
-
-    # Check if one need to use blast databases remotelly or not
-    remote_arg = ""
-    if len(sys.argv) > 1 and sys.argv[1] == "-remote":
-        remote_arg = "-remote"
-
-    # Input species, delimeter is comma or space
-    #species = []
-    #while not species:
-    #    species = raw_input("Enter species: ")
-    #    species = species.replace(",", " ").split()
-
-    # Read FASTA files and fix header line format
-    for fasta in glob.glob(os.path.join("uploads", "*.fasta")):
-        # Skip fixed file
-        if "_fixed.fasta" in fasta:
-            continue
-
-        print "Fixing file %s ..." % fasta
-        basename, ext = os.path.splitext(fasta)
-        with open(basename + "_fixed" + ext, "wb") as fasta_fixed:
-            # Read content of original FASTA file
-            for line in open(fasta):
-                # Replace "_" by "-"
-                line = line.replace("_", "-")
-
-                # Replace ";" by " "
-                line = line.replace(";", " ")
-
-                # Insert '>'
-                if "-" in line:
-                    line = ">%s" % line
-
-                # Write fixed text to new file ends with "_fixed"
-                fasta_fixed.write(line)
-
-    # BLAST fasta files and find gene
-    for fasta in glob.glob(os.path.join("uploads", "*_fixed.fasta")):
-        print "Blast file %s ..." % fasta
-
-        # Open CSV file to write results
-        report = fasta.replace("_fixed.fasta", ".csv")
-        with open(report, 'wb') as csvfile:
-            writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["Accession Number", "FPKM Value"])
-
-            # Iterate via sequences
-            sequence = ""
-
-            for line in open(fasta):
-                if line.startswith('>') and sequence.startswith('>'):
-                        # Run blast
-                        row = blast_sequence(sequence)
-                        # Save row
-                        writer.writerow(row)
-                        # Start new sequence
-                        sequence = line
-                else:
-                    sequence += "%s\n" % line
-
-            # If the last sequence is not empty
-            if sequence and sequence.startswith('>'):
-                # Run blast
-                row = blast_sequence(sequence)
-                # Save row
-                writer.writerow(row)
 
 
 
@@ -185,73 +84,36 @@ def upload(upload):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # Save the filename into a list, we'll use it later
             filenames.append(filename)
-            # Redirect the user to the uploaded_file route, which
-            # will basicaly show on the browser the uploaded file
-    # Load an html page with a link to each uploaded file
+            
+    # Rename files in the Upload folder 
+    rename_file()
+    # Render blast template when files are succesfully uploaded   
+    return render_template('blast.html', filenames=filenames) 
 
-    rename_file()     
-    return render_template('home.html', filenames=filenames) # files uploaded succesfully, click here to run blast
-
-# This route is expecting a parameter containing the name
-# of a file. Then it will locate that file on the upload
-# directory and run blast
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
- for filenames in app.config['UPLOAD_FOLDER'], filename:
-  blast_sequence(filenames)
- #return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-#This route will run the blast in the background and save the results in the saver
-
-#@app.route('/generate')
-#def generate():
- #   id = str(uuid.uuid4())
-  #  background_scripts[id] = False
-   # threading.Thread(target=run_script(id)).start()
-    #return render_template('processing.html', id=id)
-
-
-#This route will show if processed is done
-#@app.route("/is_done")
-#def is_done():
- #id= request.args.get("id", None)
- #if id not in background_scripts:
-  #abort(404)
- #return jsonify(done=background_scripts[id])
- 
-
-   
-    
+# This route runs blast on all files in the upload folder, create a metrix from the csv files 
+#and then run analysis. 
+@app.route('/results')
+def blast_file():
+ #command to run the blast
+ command= "python localblast.py" 
+ subprocess.call(command, shell=True)
+ #command to run the matrixproduction
+ command= "python MatrixProduction.py"
+ subprocess.call(command, shell=True)
+ #command to run the analysis
+ command= "Rscript SethAnalysis.R"
+ subprocess.call(command, shell=True)
+ #Render plots and tables generate from the anlysis
+ return render_template("results.html")
 
 
 
-
-     
-
-
-
-
-
-
-
-
-#@app.route('/result)
-#def blast():
- #memory = subprocess.Popen(['blast.py, UPLO'],stdout=subprocess.PIPE])
- #out,error = memory.communicate()
-
-# return render_template('view.html', out=out, error=error)
-
-
-
-
-
-  
 
 
 
  
 
+   
 
 
 @app.context_processor
