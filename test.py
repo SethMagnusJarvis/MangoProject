@@ -20,7 +20,6 @@ import glob, os, shutil
 import numpy
 import math
 
-
 # initialise the Flask application
 app = Flask(__name__)
 
@@ -36,7 +35,7 @@ def allowed_file(filename):
 
 # Rename files in the upload folder
 def rename_file():
- path = '/home/abdou/myproject/app/Upload'
+ path = 'Upload'
  files = os.listdir(path)
  filenames=(list(files))
 
@@ -49,24 +48,17 @@ def rename_file():
      G=G+1
      S=1
 
-
-
-
 @app.route('/')
 def index():
     return render_template("about.html")
 
-
- 
 # This route will show a form to perform an AJAX request
 # jQuery is loaded to execute the request and update the
 # value of the operation
 
-
 @app.route('/blast')
 def upload_file():
  return render_template("upload.html")
-
 
 # Route that will process the file upload
 @app.route('/<upload>', methods=['POST'])
@@ -101,20 +93,10 @@ def blast_file():
  command= "python MatrixProduction.py"
  subprocess.call(command, shell=True)
  #command to run the analysis
- command= "Rscript SethAnalysis.R"
+ command= "Rscript Analysis.R"
  subprocess.call(command, shell=True)
  #Render plots and tables generate from the anlysis
  return render_template("results.html")
-
-
-
-
-
-
- 
-
-   
-
 
 @app.context_processor
 def override_url_for():
@@ -128,8 +110,6 @@ def dated_url_for(endpoint, **values):
                                      endpoint, filename)
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True) 
