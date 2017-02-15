@@ -6,7 +6,10 @@ import math
 def fixsort(data):
 	#drops NA values
 	data = data.dropna(axis=0, how='any')
-	#sorts columns by Accession then by FPKM
+	#sorts columns by Accession then by FPKM (although it seems to have a slight misunderstanding on how to sort
+        #I think the error might be casued by it being ascending sort but it doesn't sort it as a number but rather
+	#as a string of characters, so if it's double digits they'll be at the top but past that it will select the
+	#lowest FPKM, would need to tell it to interpret the numbers as numbers and not strings
 	data = data.sort_values(by=['Accession', 'FPKM'])
 	#removes instance of Accession which appears becasue of the way files are imported
 	data = data[data.Accession != 'Accession']
@@ -42,9 +45,17 @@ for index, file in enumerate(files):
 		mtrix = fixsort(pd.read_csv(path+file, error_bad_lines=False, names=mycols))		
 	else:
 		#extend datamatrix by merging with subsequent dataframe
-		#read the csv skipping lines which for some reason have 3 commas meaning they're interpreded as 4 sections and locking the length to 2 columns by matching it to the length of my cols 
+		#read the csv
 		data = fixsort(pd.read_csv(path+file, error_bad_lines=False, names=mycols))
 		# merge data from this file to matrix
 		mtrix = pd.merge(mtrix,data, on='Accession', how='outer')
-#output resulting matrix 
-print(mtrix)
+#fill empty slots with 0.01
+mtrix = mtrix.fillna(0.01)
+#replace 0s with 0.01
+mtrix = mtrix.replace('0.0', 0.01)
+#Change row names
+mtrix = mtrix.set_index('Accession', drop=True)
+#Tried to change col names below, columns have gone weird though so I'm doing it in R instead for now
+#mtrix.columns = ['Accession', 'G1S1', 'G1S2', 'G1S3','GS1', 'G2S2', 'G2S3','G3S1', 'G3S2', 'G3S3']
+#output resulting matrix
+mtrix.to_csv("CSV/DataSet.csv")
