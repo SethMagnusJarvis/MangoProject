@@ -21,6 +21,7 @@ logdata <- log2(data)
 
 #produce a model matrix, setting 3 sample groups and naming them
 design <- model.matrix(~ 0+factor(c(1,1,1,2,2,2,3,3,3)))
+#the columns of the matrix are named in order
 colnames(design) <- c("Uninfected", "EightHours", "OneDay")
 
 #produce an expression set from the matrix
@@ -29,12 +30,14 @@ eset <- ExpressionSet(assayData=logdata)
 #Produces a linear model
 fit <- lmFit(eset, design)
 
-#creates the contrast matrix then looks for emperical Bayes method to examine variance
+#creates the contrast matrix then uses Emperical Bayes methods to examine variance
 contrast.matrix <- makeContrasts(EightHours-Uninfected, OneDay-Uninfected, OneDay-EightHours, levels=design)
+#adds the contrasts to the linear model
 fit2 <- contrasts.fit(fit, contrast.matrix)
+#uses Emperical Bayes methods to look at the differences between samples in each gene
 fit2 <- eBayes(fit2)
 
-#produce a matrix of the top differentially expressed genes and output them to files
+#produce a matrix of the top differentially expressed genes and output them to PDFs
 #Uninfected vs 8 hours
 U8TT <- topTable(fit2, coef=1, adjust="BH")
 U8TT <- U8TT[,c(1,3,4,5)]
